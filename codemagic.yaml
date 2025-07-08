@@ -1,0 +1,296 @@
+workflows:
+  android-workflow-dev:
+    name: Development Android Workflow
+    instance_type: mac_mini_m1
+    max_build_duration: 60
+    environment:
+      android_signing:
+        - skillbuddy_android_keystore # <- modify this to your keystore reference
+      groups:
+        - skillbuddy_variables # <-- (Includes GCLOUD_SERVICE_ACCOUNT_CREDENTIALS)
+      vars:
+        PACKAGE_NAME: "io.skillbuddy.academy" # <-- Put your package name here
+        GOOGLE_PLAY_TRACK: "internal"
+        CM_CLONE_DEPTH: 5
+      flutter: stable
+    triggering:
+      events:
+        - tag
+      tag_patterns:
+        - pattern: "*-dev"
+    scripts:
+      - name: Generating release notes with git commits
+        script: |
+          git fetch --all --tags
+          prev_tag=$(git for-each-ref --sort=-creatordate  --format '%(objectname)' refs/tags | sed -n 2p )
+          notes+=$(git log --pretty=format:"\n %s" "$prev_tag"..HEAD)
+          echo "$notes" | tee release_notes.txt
+      - name: Set up local.properties
+        script: |
+          echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/android/local.properties"
+      - name: Get Flutter packages
+        script: |
+          flutter packages pub get
+        ignore_failure: true
+      - name: Build AAB with Flutter
+        script: |
+          BUILD_NUMBER=$(($PROJECT_BUILD_NUMBER + 1))
+          flutter build appbundle --release \
+            --build-name=1.0.$(($PROJECT_BUILD_NUMBER + 1)) \
+            --build-number=$BUILD_NUMBER \
+            --dart-define=API_DOMAIN=$API_URL_DEV \
+            --dart-define=API_KEY=$DATABASE_API_KEY_DEV_ENV \
+    artifacts:
+      - build/**/outputs/**/*.aab
+      - build/**/outputs/**/mapping.txt
+      - flutter_drive.log
+      - release_notes.json
+    publishing:
+      email:
+        recipients:
+          - francesco@saynode.ch
+          - yann@saynode.ch
+          - manuel@saynode.ch
+          - ruthu@saynode.ch
+          - gabriela@saynode.ch
+          - paula@saynode.ch
+          - renato@saynode.ch
+        notify:
+          success: true
+          failure: true
+      google_play:
+        credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
+        track: internal
+        #changes_not_sent_for_review: true
+  ios-workflow-dev:
+    name: Development iOS Workflow
+    instance_type: mac_mini_m1
+    max_build_duration: 60
+    integrations:
+      app_store_connect: SayNode CI/CD # <- put here the team label key (can find this in codemagic)
+    environment:
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: io.skillbuddy.academy # <- put bundle identifier here // io.codemagic.flutteryaml
+      vars:
+        APP_ID: 6473525692 # <-- Put your APP ID here
+        CM_CLONE_DEPTH: 5
+      flutter: stable
+      groups:
+        - skillbuddy_variables
+      xcode: latest # <-- set to specific version e.g. 14.3, 15.0 to avoid unexpected updates.
+      cocoapods: default
+    triggering:
+      events:
+        - tag
+      tag_patterns:
+        - pattern: "*-dev"
+    scripts:
+      - name: Generating release notes with git commits
+        script: |
+          git fetch --all --tags
+          prev_tag=$(git for-each-ref --sort=-creatordate  --format '%(objectname)' refs/tags | sed -n 2p )
+          notes+=$(git log --pretty=format:"\n %s" "$prev_tag"..HEAD)
+          echo "$notes" | tee release_notes.txt
+      - name: Set up code signing settings on Xcode project
+        script: |
+          xcode-project use-profiles
+      - name: Get Flutter packages
+        script: |
+          flutter packages pub get
+      - name: Install pods
+        script: |
+          find . -name "Podfile" -execdir pod install \;
+      - name: Flutter build ipa and automatic versioning
+        script: |
+          flutter pub get
+          cd ios
+          pod repo update
+          pod update
+          appversion = $PROJECT_BUILD_NUMBER
+          echo "version from store ${appversion}"
+          flutter build ipa --release \
+            --build-name=1.0.$(($PROJECT_BUILD_NUMBER + 1)) \
+            --build-number=$(($PROJECT_BUILD_NUMBER + 1)) \
+            --dart-define=API_DOMAIN=$API_URL_DEV \
+            --dart-define=API_KEY=$DATABASE_API_KEY_DEV_ENV \
+            --export-options-plist=/Users/builder/export_options.plist
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+      - flutter_drive.log
+      - release_notes.json
+    publishing:
+      # See the following link for details about email publishing - https://docs.codemagic.io/publishing-yaml/distribution/#email
+      email:
+        recipients:
+          - francesco@saynode.ch
+          - yann@saynode.ch
+          - manuel@saynode.ch
+          - ruthu@saynode.ch
+          - gabriela@saynode.ch
+          - paula@saynode.ch
+          - renato@saynode.ch
+        notify:
+          success: true
+          failure: true
+      app_store_connect:
+        auth: integration
+        # Configuration related to TestFlight (optional)
+        # Note: This action is performed during post-processing.
+        submit_to_testflight: true
+        # Configuration related to App Store (optional)
+        # Note: This action is performed during post-processing.
+        submit_to_app_store: false
+
+  #########################################
+  #
+  #
+  # PRODUCTION
+  #
+  #
+  #########################################
+
+  android-workflow-prod:
+    name: Production Android Workflow
+    instance_type: mac_mini_m1
+    max_build_duration: 60
+    environment:
+      android_signing:
+        - skillbuddy_android_keystore # <- modify this to your keystore reference
+      groups:
+        - skillbuddy_variables # <-- (Includes GCLOUD_SERVICE_ACCOUNT_CREDENTIALS)
+      vars:
+        PACKAGE_NAME: "io.skillbuddy.academy" # <-- Put your package name here
+        GOOGLE_PLAY_TRACK: "internal"
+        CM_CLONE_DEPTH: 5
+      flutter: stable
+    triggering:
+      events:
+        - tag
+      tag_patterns:
+        - pattern: "*-prod"
+    scripts:
+      - name: Generating release notes with git commits
+        script: |
+          git fetch --all --tags
+          prev_tag=$(git for-each-ref --sort=-creatordate  --format '%(objectname)' refs/tags | sed -n 2p )
+          notes+=$(git log --pretty=format:"\n %s" "$prev_tag"..HEAD)
+          echo "$notes" | tee release_notes.txt
+      - name: Set up local.properties
+        script: |
+          echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/android/local.properties"
+      - name: Get Flutter packages
+        script: |
+          flutter packages pub get
+        ignore_failure: true
+      - name: Build AAB with Flutter
+        script: |
+          BUILD_NUMBER=$(($PROJECT_BUILD_NUMBER + 1))
+          flutter build appbundle --release \
+            --build-name=1.0.$(($PROJECT_BUILD_NUMBER + 1)) \
+            --build-number=$BUILD_NUMBER \
+            --dart-define=API_DOMAIN=$API_URL_PROD \
+            --dart-define=API_KEY=$DATABASE_API_KEY_DEV_ENV \
+    artifacts:
+      - build/**/outputs/**/*.aab
+      - build/**/outputs/**/mapping.txt
+      - flutter_drive.log
+      - release_notes.json
+    publishing:
+      email:
+        recipients:
+          - francesco@saynode.ch
+          - yann@saynode.ch
+          - manuel@saynode.ch
+          - ruthu@saynode.ch
+          - gabriela@saynode.ch
+          - paula@saynode.ch
+          - renato@saynode.ch
+        notify:
+          success: true
+          failure: true
+      google_play:
+        credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
+        track: internal
+        #changes_not_sent_for_review: true
+  ios-workflow-prod:
+    name: Production iOS Workflow
+    instance_type: mac_mini_m1
+    max_build_duration: 60
+    integrations:
+      app_store_connect: SayNode CI/CD # <- put here the team label key (can find this in codemagic)
+    environment:
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: io.skillbuddy.academy # <- put bundle identifier here // io.codemagic.flutteryaml
+      vars:
+        APP_ID: 6473525692 # <-- Put your APP ID here
+        CM_CLONE_DEPTH: 5
+      flutter: stable
+      groups:
+        - skillbuddy_variables
+      xcode: latest # <-- set to specific version e.g. 14.3, 15.0 to avoid unexpected updates.
+      cocoapods: default
+    triggering:
+      events:
+        - tag
+      tag_patterns:
+        - pattern: "*-prod"
+    scripts:
+      - name: Generating release notes with git commits
+        script: |
+          git fetch --all --tags
+          prev_tag=$(git for-each-ref --sort=-creatordate  --format '%(objectname)' refs/tags | sed -n 2p )
+          notes+=$(git log --pretty=format:"\n %s" "$prev_tag"..HEAD)
+          echo "$notes" | tee release_notes.txt
+      - name: Set up code signing settings on Xcode project
+        script: |
+          xcode-project use-profiles
+      - name: Get Flutter packages
+        script: |
+          flutter packages pub get
+      - name: Install pods
+        script: |
+          find . -name "Podfile" -execdir pod install \;
+      - name: Flutter build ipa and automatic versioning
+        script: |
+          flutter pub get
+          cd ios
+          pod repo update
+          pod update
+          appversion = $PROJECT_BUILD_NUMBER
+          echo "version from store ${appversion}"
+          flutter build ipa --release \
+            --build-name=1.0.$(($PROJECT_BUILD_NUMBER + 1)) \
+            --build-number=$(($PROJECT_BUILD_NUMBER + 1)) \
+            --dart-define=API_DOMAIN=$API_URL_PROD \
+            --dart-define=API_KEY=$DATABASE_API_KEY_DEV_ENV \
+            --export-options-plist=/Users/builder/export_options.plist
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+      - flutter_drive.log
+      - release_notes.json
+    publishing:
+      # See the following link for details about email publishing - https://docs.codemagic.io/publishing-yaml/distribution/#email
+      email:
+        recipients:
+          - francesco@saynode.ch
+          - yann@saynode.ch
+          - manuel@saynode.ch
+          - ruthu@saynode.ch
+          - gabriela@saynode.ch
+          - paula@saynode.ch
+          - renato@saynode.ch
+        notify:
+          success: true
+          failure: true
+      app_store_connect:
+        auth: integration
+        # Configuration related to TestFlight (optional)
+        # Note: This action is performed during post-processing.
+        submit_to_testflight: true
+        # Configuration related to App Store (optional)
+        # Note: This action is performed during post-processing.
+        submit_to_app_store: false

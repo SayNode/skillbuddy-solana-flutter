@@ -1,0 +1,86 @@
+{
+  "project_info": {
+    "project_number": "644593034419",
+    "project_id": "saynode-skillbuddy",
+    "storage_bucket": "saynode-skillbuddy.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:644593034419:android:da3c222457c96dd85afcc6",
+        "android_client_info": {
+          "package_name": "io.skillbuddy.academy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "644593034419-0pjb3mrjid8gn8efflcikh7i4avlui9l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.skillbuddy.academy",
+            "certificate_hash": "5ca3170c35e8d677595907c8dfab2a1386fab88f"
+          }
+        },
+        {
+          "client_id": "644593034419-9usu6ttfmdrg9junuh35ss6fmq5dro13.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.skillbuddy.academy",
+            "certificate_hash": "23a48438c8e48d42285f0fb827c279db38c10fa2"
+          }
+        },
+        {
+          "client_id": "644593034419-e1bmu81ed2s8q7bkaic4ngll3ikm42gd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.skillbuddy.academy",
+            "certificate_hash": "f361a6e3a3f6b065d58d0da70708fb5bfd2d2887"
+          }
+        },
+        {
+          "client_id": "644593034419-lq9hec115p2kbmrn1h84pvtf7argom73.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.skillbuddy.academy",
+            "certificate_hash": "5aea051a51cd640d6e2bbcd42124e7d8429bf61a"
+          }
+        },
+        {
+          "client_id": "644593034419-vselltl8ioju2uvkpk9fkph5tf3cod7l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.skillbuddy.academy",
+            "certificate_hash": "9b574f139c02eb179ac979163ecb9a02152d05ad"
+          }
+        },
+        {
+          "client_id": "644593034419-c14opnlgna9jrll01jcj0nh8lea5t13c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9EDUS1DHdb7ND1ecRk14KKQKiG9Z_N_E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "644593034419-c14opnlgna9jrll01jcj0nh8lea5t13c.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "644593034419-ll9439rm978qreheudn30gntljmh8bu5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "io.skillbuddy.academy"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

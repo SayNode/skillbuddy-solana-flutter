@@ -1,0 +1,7 @@
+shared_storage
+theme
+typography
+secure_storage
+localization
+wallet
+crashalytics
