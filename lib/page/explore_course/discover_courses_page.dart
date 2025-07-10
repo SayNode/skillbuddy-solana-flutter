@@ -279,8 +279,8 @@ class DiscoverCoursesPage extends GetView<DiscoverCoursesController> {
                       child: Text(
                         user.dailyStreak.toString(),
                         style: SkillBuddyTypography.fromColor(
-                          theme.linen,
-                        ).kTextAdditional,
+                          theme.graphite,
+                        ).kParagraphSemiBold,
                       ),
                     ),
                   ],

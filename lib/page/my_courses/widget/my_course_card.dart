@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:gradient_progress_bar/gradient_progress_bar.dart';
 
 import '../../../model/content/course.dart';
 import '../../../service/theme_service.dart';
@@ -143,16 +144,9 @@ class MyCourseCard extends StatelessWidget {
                                       CrossAxisAlignment.stretch,
                                   children: <Widget>[
                                     Expanded(
-                                      child: LinearProgressIndicator(
-                                        value: course.progress / 100,
-                                        backgroundColor: theme.linen,
-                                        color: theme.electric,
-                                        minHeight: 4,
-                                        borderRadius: BorderRadius.circular(8),
-                                        valueColor:
-                                            AlwaysStoppedAnimation<Color>(
-                                          theme.electric,
-                                        ),
+                                      child: GradientProgressIndicator(
+                                        [theme.electric, Colors.black],
+                                        course.progress / 100,
                                       ),
                                     ),
                                     Gap(getRelativeHeight(12)),
@@ -186,8 +180,8 @@ class MyCourseCard extends StatelessWidget {
                                     textAlign: TextAlign.left,
                                   ),
                                   Gap(getRelativeHeight(24)),
-                                  SvgPicture.asset(
-                                    'asset/icons/satoshi_icon.svg',
+                                  Image.asset(
+                                    'asset/icons/bonk.png',
                                     width: 20,
                                     height: 20,
                                     fit: BoxFit.cover,

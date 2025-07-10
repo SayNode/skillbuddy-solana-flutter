@@ -44,26 +44,16 @@ class SkillBuddyButton extends StatelessWidget {
           text,
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.center,
-          style:
-              textStyle ?? SkillBuddyTypography(theme.linen).kParagraphSemiBold,
+          style: textStyle ??
+              SkillBuddyTypography(locked ? theme.graphite : theme.graphite)
+                  .kParagraphSemiBold,
           maxLines: 1,
         );
 
     return SizedBox(
       height: height,
-      width:
-          double.infinity, // Make the button expand to fill the available width
+      width: double.infinity,
       child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          padding: EdgeInsets.all(padding),
-          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          backgroundColor: locked ? theme.grey : (color ?? theme.graphite),
-          disabledBackgroundColor:
-              locked ? theme.grey : (color ?? theme.graphite),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(borderRadius),
-          ),
-        ),
         onPressed: loading.value || locked
             ? null
             : () async {
@@ -73,15 +63,37 @@ class SkillBuddyButton extends StatelessWidget {
                   loading.value = false;
                 }
               },
-        child: Padding(
-          padding: const EdgeInsets.all(8),
+        style: ElevatedButton.styleFrom(
+          padding: EdgeInsets.zero,
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          backgroundColor: Colors.transparent,
+          disabledBackgroundColor: Colors.transparent,
+          shadowColor: Colors.transparent,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(borderRadius),
+          ),
+        ),
+        child: Ink(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: <Color>[
+                if (locked) theme.slate else color ?? theme.electric,
+                if (locked)
+                  theme.fadedGreen
+                else
+                  color ?? const Color.fromRGBO(46, 14, 88, 1),
+              ],
+            ),
+            borderRadius: BorderRadius.circular(borderRadius),
+          ),
+          padding: EdgeInsets.all(padding * 1.8),
           child: Obx(
             () => Row(
-              mainAxisAlignment: MainAxisAlignment.center, // Center the content
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 if (leading != null) ...<Widget>[
                   leading!,
-                  const SizedBox(width: 8), // Adjust spacing as needed
+                  const SizedBox(width: 8),
                 ],
                 if (loading.value) const Gap(4),
                 if (loading.value)
@@ -89,7 +101,6 @@ class SkillBuddyButton extends StatelessWidget {
                     height: 16,
                     width: 16,
                   ),
-                // Remove the Expanded widget around getText()
                 getText(),
                 if (loading.value) const Gap(4),
                 if (loading.value)

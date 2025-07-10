@@ -42,7 +42,7 @@ class DonatePopup extends GetView<DonatePopupController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    "Please enter the amount of sats you'd like to \ndonate. Every contribution makes a \ndifference!"
+                    "Please enter the amount of Bonk you'd like to \ndonate. Every contribution makes a \ndifference!"
                         .tr,
                     textAlign: TextAlign.start,
                     style: SkillBuddyTypography.fromColor(
@@ -70,7 +70,7 @@ class DonatePopup extends GetView<DonatePopupController> {
                           ).kParagraphSemiBold,
                         ),
                         TextSpan(
-                          text: ' sats',
+                          text: ' Bonk',
                           style: SkillBuddyTypography.fromColor(
                             skillBuddyTheme.graphite,
                           ).kParagraphSemiBold,
@@ -80,7 +80,7 @@ class DonatePopup extends GetView<DonatePopupController> {
                   ),
                   Gap(getRelativeHeight(10)),
                   SkillBuddyTextField(
-                    hintText: 'Enter sats here'.tr,
+                    hintText: 'Enter bonk here'.tr,
                     onChanged: (String value) {
                       // controller.updateText();
                     },

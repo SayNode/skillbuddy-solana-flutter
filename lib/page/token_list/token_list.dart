@@ -67,7 +67,7 @@ class TokenListPage extends GetView<TokenListController> {
                         ),
                         const Gap(2),
                         Text(
-                          '${controller.user.token} sats',
+                          '${controller.user.token} Bonk',
                           style: SkillBuddyTypography.fromColor(
                             skillBuddyTheme.graphite,
                           ).kTitle,

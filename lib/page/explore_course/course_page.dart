@@ -109,8 +109,8 @@ class CoursePage extends GetView<CourseDetailsController> {
                                                   ).kTextAdditional,
                                                 ),
                                                 const Gap(15),
-                                                SvgPicture.asset(
-                                                  'asset/icons/satoshi_icon.svg',
+                                                Image.asset(
+                                                  'asset/icons/bonk.png',
                                                   width: 20,
                                                   height: 20,
                                                 ),

@@ -23,6 +23,7 @@ class SkillBuddyNavigationBar
         children: <Widget>[
           Expanded(
             child: Material(
+              color: theme.linen,
               child: InkWell(
                 child: Center(
                   child: Obx(
@@ -32,7 +33,7 @@ class SkillBuddyNavigationBar
                         controller.selectedPage.index ==
                                 NavigationBarPage.home.index
                             ? theme.electric
-                            : Colors.black,
+                            : theme.graphite,
                         BlendMode.srcIn,
                       ),
                       semanticsLabel: 'Home',
@@ -45,6 +46,7 @@ class SkillBuddyNavigationBar
           ),
           Expanded(
             child: Material(
+              color: theme.linen,
               child: InkWell(
                 child: Center(
                   child: Obx(
@@ -54,7 +56,7 @@ class SkillBuddyNavigationBar
                         controller.selectedPage.index ==
                                 NavigationBarPage.book.index
                             ? theme.electric
-                            : Colors.black,
+                            : theme.graphite,
                         BlendMode.srcIn,
                       ),
                       semanticsLabel: 'Home',
@@ -67,6 +69,7 @@ class SkillBuddyNavigationBar
           ),
           Expanded(
             child: Material(
+              color: theme.linen,
               child: InkWell(
                 child: Center(
                   child: Obx(
@@ -76,7 +79,7 @@ class SkillBuddyNavigationBar
                         controller.selectedPage.index ==
                                 NavigationBarPage.crown.index
                             ? theme.electric
-                            : Colors.black,
+                            : theme.graphite,
                         BlendMode.srcIn,
                       ),
                       semanticsLabel: 'Home',
@@ -89,6 +92,7 @@ class SkillBuddyNavigationBar
           ),
           Expanded(
             child: Material(
+              color: theme.linen,
               child: InkWell(
                 child: Center(
                   child: Obx(
