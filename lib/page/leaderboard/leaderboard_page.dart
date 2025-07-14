@@ -77,11 +77,16 @@ class LeaderboardPage extends GetView<LeaderboardController> {
                       ? Center(
                           child: controller.isLoading.value
                               ? SpinKitCircle(
-                                  color: theme.electric,
+                                  color: theme.graphite,
                                   size: getRelativeWidth(64),
                                 )
                               : Text(
                                   'No rank on this board yet'.tr,
+                                  style: SkillBuddyTypography.fromColor(
+                                    theme.graphite,
+                                  ).kParagraphSemiBold.copyWith(
+                                        fontSize: getRelativeWidth(16),
+                                      ),
                                 ),
                         )
                       : DecoratedBox(
@@ -225,6 +230,11 @@ class LeaderboardPage extends GetView<LeaderboardController> {
                                       LeaderboardType.global
                                   ? 'No more accounts to show.'
                                   : 'No more friends to show.'.tr,
+                              style: SkillBuddyTypography.fromColor(
+                                theme.graphite,
+                              ).kParagraphSemiBold.copyWith(
+                                    fontSize: getRelativeWidth(16),
+                                  ),
                             ),
                           ),
                         )

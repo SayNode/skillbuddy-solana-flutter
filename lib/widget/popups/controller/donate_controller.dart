@@ -29,7 +29,7 @@ class DonatePopupController extends GetxController {
     error.value = '';
     if (int.parse(amountController.value.text) >
         Get.find<UserStateService>().user.value.token) {
-      error.value = 'You do not have enough sats'.tr;
+      error.value = 'You do not have enough Bonk'.tr;
     } else {
       error.value = '';
       try {

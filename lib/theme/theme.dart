@@ -12,6 +12,7 @@ class CustomTheme extends ThemeExtension<CustomTheme> {
     required this.seashell,
     required this.red,
     required this.green,
+    required this.fadedGreen,
     required this.greyish,
   });
 
@@ -31,6 +32,8 @@ class CustomTheme extends ThemeExtension<CustomTheme> {
 
   final Color green;
 
+  final Color fadedGreen;
+
   final Color greyish;
 
   @override
@@ -43,6 +46,7 @@ class CustomTheme extends ThemeExtension<CustomTheme> {
     Color? seashell,
     Color? red,
     Color? green,
+    Color? fadedGreen,
     Color? greyish,
   }) {
     return CustomTheme(
@@ -54,6 +58,7 @@ class CustomTheme extends ThemeExtension<CustomTheme> {
       seashell: seashell ?? this.seashell,
       red: red ?? this.red,
       green: green ?? this.green,
+      fadedGreen: fadedGreen ?? this.fadedGreen,
       greyish: greyish ?? this.greyish,
     );
   }
@@ -68,6 +73,7 @@ class CustomTheme extends ThemeExtension<CustomTheme> {
     seashell: DarkColor.seashell,
     red: DarkColor.red,
     green: DarkColor.green,
+    fadedGreen: DarkColor.fadedGreen,
     greyish: DarkColor.greyish,
   );
 
@@ -80,6 +86,7 @@ class CustomTheme extends ThemeExtension<CustomTheme> {
     seashell: LightColor.seashell,
     red: LightColor.red,
     green: LightColor.green,
+    fadedGreen: LightColor.fadedGreen,
     greyish: LightColor.greyish,
   );
 

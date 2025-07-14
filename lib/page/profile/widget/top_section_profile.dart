@@ -71,6 +71,7 @@ class TopSectionOfProfile extends StatelessWidget {
             children: <Widget>[
               Material(
                 borderRadius: BorderRadius.circular(8),
+                color: skillBuddyTheme.linen,
                 child: InkWell(
                   borderRadius: BorderRadius.circular(8),
                   onTap: () => onTapName?.call(userName),
@@ -85,6 +86,7 @@ class TopSectionOfProfile extends StatelessWidget {
               Gap(getRelativeHeight(8)),
               Material(
                 borderRadius: BorderRadius.circular(8),
+                color: skillBuddyTheme.linen,
                 child: InkWell(
                   borderRadius: BorderRadius.circular(8),
                   child: RichText(

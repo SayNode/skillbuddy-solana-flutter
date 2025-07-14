@@ -32,6 +32,14 @@ class MyCourseCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final CustomTheme theme = Get.put(ThemeService()).theme;
     final MyCoursesController controller = Get.find<MyCoursesController>();
+
+    final Color adjustedProgressGradient = Color.fromRGBO(
+      (theme.electric.r * 255 - 80).toInt(),
+      (theme.electric.g * 255 - 80).toInt(),
+      (theme.electric.b * 255 - 80).toInt(),
+      1,
+    );
+
     return Stack(
       children: <Widget>[
         Material(
@@ -143,15 +151,39 @@ class MyCourseCard extends StatelessWidget {
                                       CrossAxisAlignment.stretch,
                                   children: <Widget>[
                                     Expanded(
-                                      child: LinearProgressIndicator(
-                                        value: course.progress / 100,
-                                        backgroundColor: theme.linen,
-                                        color: theme.electric,
-                                        minHeight: 4,
-                                        borderRadius: BorderRadius.circular(8),
-                                        valueColor:
-                                            AlwaysStoppedAnimation<Color>(
-                                          theme.electric,
+                                      child: DecoratedBox(
+                                        decoration: BoxDecoration(
+                                          color: theme.linen,
+                                          borderRadius: BorderRadius.circular(
+                                            8,
+                                          ),
+                                        ),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          child: ShaderMask(
+                                            shaderCallback: (Rect bounds) =>
+                                                LinearGradient(
+                                              colors: <Color>[
+                                                theme.electric,
+                                                adjustedProgressGradient,
+                                                adjustedProgressGradient,
+                                                theme.electric,
+                                              ],
+                                            ).createShader(bounds),
+                                            blendMode: BlendMode.srcATop,
+                                            child: LinearProgressIndicator(
+                                              value: course.progress / 100,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              valueColor:
+                                                  const AlwaysStoppedAnimation<
+                                                      Color?>(
+                                                Colors.white,
+                                              ),
+                                              minHeight: 4,
+                                            ),
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -186,8 +218,8 @@ class MyCourseCard extends StatelessWidget {
                                     textAlign: TextAlign.left,
                                   ),
                                   Gap(getRelativeHeight(24)),
-                                  SvgPicture.asset(
-                                    'asset/icons/satoshi_icon.svg',
+                                  Image.asset(
+                                    'asset/icons/bonk.png',
                                     width: 20,
                                     height: 20,
                                     fit: BoxFit.cover,

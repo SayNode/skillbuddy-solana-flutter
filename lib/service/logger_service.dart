@@ -10,6 +10,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../page/solana/solana_wallet_page.dart';
 import '../util/constants.dart';
 
 class LoggerService extends GetxService {
@@ -85,6 +86,18 @@ class LoggerService extends GetxService {
                     onPressed: Get.back,
                     child: const Text(
                       'Close',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Get.to<void>(() => const SolanaWalletPage());
+                    },
+                    child: const Text(
+                      'Solana wallet sig',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 16,
