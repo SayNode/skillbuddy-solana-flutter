@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:gradient_progress_bar/gradient_progress_bar.dart';
 
 import '../../../model/content/course.dart';
 import '../../../service/theme_service.dart';
@@ -33,6 +32,14 @@ class MyCourseCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final CustomTheme theme = Get.put(ThemeService()).theme;
     final MyCoursesController controller = Get.find<MyCoursesController>();
+
+    final Color adjustedProgressGradient = Color.fromRGBO(
+      (theme.electric.r * 255 - 80).toInt(),
+      (theme.electric.g * 255 - 80).toInt(),
+      (theme.electric.b * 255 - 80).toInt(),
+      1,
+    );
+
     return Stack(
       children: <Widget>[
         Material(
@@ -144,9 +151,40 @@ class MyCourseCard extends StatelessWidget {
                                       CrossAxisAlignment.stretch,
                                   children: <Widget>[
                                     Expanded(
-                                      child: GradientProgressIndicator(
-                                        [theme.electric, Colors.black],
-                                        course.progress / 100,
+                                      child: DecoratedBox(
+                                        decoration: BoxDecoration(
+                                          color: theme.linen,
+                                          borderRadius: BorderRadius.circular(
+                                            8,
+                                          ),
+                                        ),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          child: ShaderMask(
+                                            shaderCallback: (Rect bounds) =>
+                                                LinearGradient(
+                                              colors: <Color>[
+                                                theme.electric,
+                                                adjustedProgressGradient,
+                                                adjustedProgressGradient,
+                                                theme.electric,
+                                              ],
+                                            ).createShader(bounds),
+                                            blendMode: BlendMode.srcATop,
+                                            child: LinearProgressIndicator(
+                                              value: course.progress / 100,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              valueColor:
+                                                  const AlwaysStoppedAnimation<
+                                                      Color?>(
+                                                Colors.white,
+                                              ),
+                                              minHeight: 4,
+                                            ),
+                                          ),
+                                        ),
                                       ),
                                     ),
                                     Gap(getRelativeHeight(12)),

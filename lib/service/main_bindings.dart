@@ -15,6 +15,7 @@ import '../page/leaderboard/controller/leaderboard_controller.dart';
 import '../page/my_courses/controller/my_courses_controller.dart';
 import '../page/profile/controller/donate_list_controller.dart';
 import '../page/profile/controller/profile_controller.dart';
+import '../page/solana/solana_service.dart';
 import '../page/token_list/token_list_controller.dart';
 import '../service/api_service.dart';
 import '../service/auth_service.dart';
@@ -61,6 +62,7 @@ class MainBindings extends Bindings {
     Get.lazyPut(AnalyticsService.new);
     Get.lazyPut(BranchService.new);
     Get.lazyPut(EventService.new);
+    Get.lazyPut(SolanaService.new);
   }
 
   void _injectControllers() {
