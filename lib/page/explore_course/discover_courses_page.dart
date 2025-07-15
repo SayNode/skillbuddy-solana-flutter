@@ -4,6 +4,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:rive/rive.dart';
 
 import '../../model/content/course.dart';
 import '../../model/user_model.dart';
@@ -51,6 +52,14 @@ class DiscoverCoursesPage extends GetView<DiscoverCoursesController> {
                   child: SvgPicture.asset('asset/icons/settings_icon.svg'),
                 ),
               ],
+            ),
+          ),
+          SizedBox(
+            height: 100,
+            width: double.infinity,
+            child: RiveAnimation.asset(
+              'asset/animations/solana_hack.riv',
+              fit: BoxFit.cover,
             ),
           ),
           const Gap(8),
