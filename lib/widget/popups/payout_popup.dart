@@ -9,7 +9,6 @@ import '../../theme/theme.dart';
 import '../../theme/typography.dart';
 import '../../util/util.dart';
 import '../skillbuddy_button.dart';
-import '../skillbuddy_textfield.dart';
 import 'controller/payout_popup_controller.dart';
 
 class PayoutPopup extends GetView<PayoutPopupController> {
@@ -41,76 +40,21 @@ class PayoutPopup extends GetView<PayoutPopupController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    'You must:'.tr,
+                    'Begin the withdrawal process by connecting your Solana compatible wallet'
+                        .tr,
                     textAlign: TextAlign.start,
                     style: SkillBuddyTypography.fromColor(
                       skillBuddyTheme.graphite,
                     ).kParagraph,
                   ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: getRelativeWidth(10),
-                    ),
-                    child: Text(
-                      '• Use a lightning wallet'.tr,
-                      style: SkillBuddyTypography.fromColor(
-                        skillBuddyTheme.graphite,
-                      ).kParagraph,
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: getRelativeWidth(10),
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          '• ',
-                          style: SkillBuddyTypography.fromColor(
-                            skillBuddyTheme.graphite,
-                          ).kParagraph,
-                        ),
-                        Expanded(
-                          child: Text(
-                            'Create an invoice for the amount you want to redeem (if the amount is more than your balance, it will not work)'
-                                .tr,
-                            style: SkillBuddyTypography.fromColor(
-                              skillBuddyTheme.graphite,
-                            ).kParagraph,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: getRelativeWidth(10),
-                    ),
-                    child: Text(
-                      '• Enter your invoice below & redeem!'.tr,
-                      style: SkillBuddyTypography.fromColor(
-                        skillBuddyTheme.graphite,
-                      ).kParagraph,
-                    ),
-                  ),
-                  const Gap(15),
-                  SkillBuddyTextField(
-                    hintText: 'Enter lightning invoice'.tr,
-                    controller: controller.lightningInvoiceController,
-                    onChanged: (String value) {
-                      controller.updateText();
-                    },
-                  ),
-                  const Gap(15),
                 ],
               ),
             ),
+            const Gap(30),
             Obx(
               () => SkillBuddyButton(
-                text: 'Redeem'.tr,
+                text: 'Connect wallet'.tr,
                 onTap: controller.getPayoutMessage,
-                locked: !controller.isInvoiceValid.value,
               ),
             ),
             const Gap(10),

@@ -49,7 +49,7 @@ class TokenListPage extends GetView<TokenListController> {
                 thickness: 3,
               ),
               const Gap(16),
-              if (controller.user.token >= 1000)
+              if (controller.user.token >= 1)
                 Column(
                   children: <Widget>[
                     Padding(

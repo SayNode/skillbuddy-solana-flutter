@@ -12,17 +12,6 @@ class PayoutPopupController extends GetxController {
   final TextEditingController lightningInvoiceController =
       TextEditingController();
 
-  RxBool isInvoiceValid = false.obs;
-  void updateText() {
-    final String text = lightningInvoiceController.value.text;
-
-    if (text.isNotEmpty) {
-      isInvoiceValid.value = true;
-    } else {
-      isInvoiceValid.value = false;
-    }
-  }
-
   Future<void> getPayoutMessage() async {
     Get.back<void>();
     PopupManager.openLoadingPopup();
