@@ -251,7 +251,10 @@ class MyCourseCard extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
             ),
-            icon: const Icon(Icons.more_vert),
+            icon: Icon(
+              Icons.more_vert,
+              color: Get.find<ThemeService>().theme.graphite,
+            ),
             onSelected: (String value) {
               switch (value) {
                 case 'Remove course':
