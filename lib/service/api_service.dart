@@ -135,6 +135,39 @@ class APIService extends GetxService {
     }
   }
 
+  Future<ApiResponse> sendWithdrawalRequest(
+    String path, {
+    required Map<String, dynamic> fields,
+  }) async {
+    final Uri url = Uri.https(SkillBuddyConstants.apiDomain, path);
+
+    final http.MultipartRequest request = http.MultipartRequest('POST', url);
+
+    // ignore: always_specify_types
+    fields.forEach((String key, value) {
+      request.fields[key] = value.toString();
+    });
+
+    request.headers.addAll(await _generateHeaders());
+
+    final http.StreamedResponse streamedResponse = await request.send();
+    final http.Response response =
+        await http.Response.fromStream(streamedResponse);
+
+    if (response.statusCode >= 500) {
+      throw _APIException(path, response.statusCode);
+    }
+
+    try {
+      return ApiResponse.fromJson(
+        json.decode(utf8.decode(response.bodyBytes)),
+        response.statusCode,
+      );
+    } catch (e) {
+      throw ParsingException(e.toString(), response.statusCode, path);
+    }
+  }
+
   Future<ApiResponse> post(
     String path, {
     Map<String, dynamic>? body,

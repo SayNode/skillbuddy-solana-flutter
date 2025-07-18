@@ -81,13 +81,6 @@ class TokenListPage extends GetView<TokenListController> {
                                   skillBuddyTheme.graphite,
                                 ).kTitle,
                               ),
-                              Gap(getRelativeHeight(2)),
-                              Text(
-                                '~\$${controller.bitcoinPriceInDollar.value.toStringAsFixed(2)}',
-                                style: SkillBuddyTypography.fromColor(
-                                  skillBuddyTheme.graphite,
-                                ).kTextAdditional,
-                              ),
                             ],
                           ),
                         ),
