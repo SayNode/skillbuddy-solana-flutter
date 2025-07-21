@@ -91,6 +91,11 @@ class LessonPage extends GetView<LessonController> {
                     children: <Widget>[
                       Html(
                         data: lesson.content,
+                        style: <String, Style>{
+                          'body': Style(
+                            color: skillBuddyTheme.graphite,
+                          ),
+                        },
                       ),
                     ],
                   ),

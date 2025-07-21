@@ -8,6 +8,8 @@ import '../page/onboarding/time_selection/time_selection.dart';
 import 'api_service.dart';
 import 'user_state_service.dart';
 
+const bool solanaCourseFilterActive = false;
+
 class AreaOfInterest {
   AreaOfInterest({
     required this.title,
@@ -50,7 +52,13 @@ class InterestService extends GetxService {
   @override
   Future<void> onInit() async {
     super.onInit();
-    interestSelection.value = await getAreasOfInterest();
+    interestSelection.value = solanaCourseFilterActive
+        ? AreasOfInterest(
+            areas: <AreaOfInterest>[
+              AreaOfInterest(title: 'Solana'),
+            ],
+          )
+        : await getAreasOfInterest();
     _interestsFetchCompleter.complete();
   }
 

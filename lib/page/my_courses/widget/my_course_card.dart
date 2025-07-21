@@ -277,7 +277,7 @@ class MyCourseCard extends StatelessWidget {
                   child: Text(
                     'Remove course'.tr,
                     style: SkillBuddyTypography.fromColor(
-                      theme.graphite,
+                      theme.linen,
                     ).kParagraph,
                   ),
                 ),
@@ -291,7 +291,7 @@ class MyCourseCard extends StatelessWidget {
                   child: Text(
                     'Progress reset'.tr,
                     style: SkillBuddyTypography.fromColor(
-                      theme.graphite,
+                      theme.linen,
                     ).kParagraph,
                   ),
                 ),
@@ -305,7 +305,7 @@ class MyCourseCard extends StatelessWidget {
                   child: Text(
                     'Share'.tr,
                     style: SkillBuddyTypography.fromColor(
-                      theme.graphite,
+                      theme.linen,
                     ).kParagraph,
                   ),
                 ),

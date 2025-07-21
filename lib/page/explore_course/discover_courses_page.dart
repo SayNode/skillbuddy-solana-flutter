@@ -135,7 +135,13 @@ class DiscoverCoursesPage extends GetView<DiscoverCoursesController> {
                                     ).kTextAdditional,
                                   ),
                                   const Spacer(),
-                                  SvgPicture.asset('asset/icons/continue.svg'),
+                                  SvgPicture.asset(
+                                    'asset/icons/continue.svg',
+                                    colorFilter: ColorFilter.mode(
+                                      theme.electric,
+                                      BlendMode.srcIn,
+                                    ),
+                                  ),
                                 ],
                               ),
                               const Gap(2),
