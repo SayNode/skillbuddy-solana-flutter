@@ -147,7 +147,7 @@ class DonatePopup extends GetView<DonatePopupController> {
                     () => controller.error.value.isEmpty
                         ? Container()
                         : Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 8),
+                            padding: const EdgeInsets.symmetric(vertical: 16),
                             child: Center(
                               child: Text(
                                 controller.error.value,
@@ -163,16 +163,13 @@ class DonatePopup extends GetView<DonatePopupController> {
             ),
             Obx(
               () => controller.error.value.isEmpty
-                  ? const Gap(15)
+                  ? const Gap(30)
                   : const SizedBox(),
             ),
             Obx(
               () => SkillBuddyButton(
                 text: 'Confirm'.tr,
-                onTap: () => controller.confirmDonation(
-                  charityAddress,
-                  int.parse(controller.amountController.value.text),
-                ),
+                onTap: () => controller.donate(),
                 locked: controller.loading.value ||
                     controller.amountText.value.isEmpty,
               ),
