@@ -54,7 +54,11 @@ class DiscoverCoursesPage extends GetView<DiscoverCoursesController> {
                     () => const SettingsPage(),
                     transition: Transition.upToDown,
                   ),
-                  child: SvgPicture.asset('asset/icons/settings_icon.svg'),
+                  child: SvgPicture.asset(
+                    'asset/icons/settings_icon.svg',
+                    colorFilter:
+                        ColorFilter.mode(theme.graphite, BlendMode.srcIn),
+                  ),
                 ),
               ],
             ),
