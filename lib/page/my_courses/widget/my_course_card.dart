@@ -248,6 +248,7 @@ class MyCourseCard extends StatelessWidget {
         Align(
           alignment: Alignment.topRight,
           child: PopupMenuButton<String>(
+            color: theme.greyish,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
             ),
@@ -277,7 +278,7 @@ class MyCourseCard extends StatelessWidget {
                   child: Text(
                     'Remove course'.tr,
                     style: SkillBuddyTypography.fromColor(
-                      theme.linen,
+                      theme.graphite,
                     ).kParagraph,
                   ),
                 ),
@@ -291,7 +292,7 @@ class MyCourseCard extends StatelessWidget {
                   child: Text(
                     'Progress reset'.tr,
                     style: SkillBuddyTypography.fromColor(
-                      theme.linen,
+                      theme.graphite,
                     ).kParagraph,
                   ),
                 ),
@@ -305,7 +306,7 @@ class MyCourseCard extends StatelessWidget {
                   child: Text(
                     'Share'.tr,
                     style: SkillBuddyTypography.fromColor(
-                      theme.linen,
+                      theme.graphite,
                     ).kParagraph,
                   ),
                 ),

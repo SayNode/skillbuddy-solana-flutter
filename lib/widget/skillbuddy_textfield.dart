@@ -18,7 +18,7 @@ class SkillBuddyTextField extends StatelessWidget {
     this.validator,
     this.suffixIcon,
     this.controller,
-    this.hintColor = DarkColor.grey,
+    this.hintColor = DarkColor.slate,
     this.onChanged,
     this.maxLines = 1,
     this.keyBoardType,
@@ -63,10 +63,18 @@ class SkillBuddyTextField extends StatelessWidget {
           validator: validator,
           onChanged: onChanged,
           maxLines: maxLines,
+          style: TextStyle(color: theme.graphite),
           decoration: InputDecoration(
             suffixIcon: suffixIcon,
             hintText: hintText,
             hintStyle: TextStyle(color: hintColor),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                color: hasError ? theme.red : theme.graphite.withAlpha(200),
+                width: 2,
+              ),
+              borderRadius: BorderRadius.circular(12),
+            ),
             focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(
                 color: hasError ? theme.red : theme.electric,
