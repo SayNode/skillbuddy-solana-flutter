@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import '../service/api_service.dart';
 import '../service/auth_service.dart';
 import '../service/storage/storage_service.dart';
+import '../service/user_state_service.dart';
 import 'create_account_and_login/login_page.dart';
 import 'create_account_and_login/login_simplified.dart';
 import 'home/home_page.dart';
@@ -36,56 +37,41 @@ class SplashPage extends StatelessWidget {
           return;
         }
 
-        if (biometricEnabled) {
-          // biometric enabled
-          final bool biometricSuccess =
-              await Get.find<AuthService>().biometricLogin();
-          if (biometricSuccess) {
-            // biometric login success
-            final bool silentLoginSuccess =
-                (await Get.find<AuthService>().silentLogin()).success;
-            if (!silentLoginSuccess) {
-              // silent login failed
-              if (exsitingEmail != '' && exsitingEmail != null) {
-                // has user data in storage
-                final String username =
-                    await storage.secure.readString('username') ?? '';
-                await Get.off<void>(() => SimpleLoginPage(username: username));
-              } else {
-                await Get.off<void>(() => const LoginPage());
-              }
-            } else {
-              await Get.off<void>(() => const HomePage());
-            }
+        Future<void> navigateAfterLogin(
+          StorageService storage,
+          String? exsitingEmail,
+        ) async {
+          if (exsitingEmail != null && exsitingEmail.isNotEmpty) {
+            final String username =
+                await storage.secure.readString('username') ?? '';
+            await Get.off<void>(() => SimpleLoginPage(username: username));
           } else {
-            // biometric login failed
-            if (exsitingEmail != '' && exsitingEmail != null) {
-              // has user data in storage
-              final String username =
-                  await storage.secure.readString('username') ?? '';
-              await Get.off<void>(() => SimpleLoginPage(username: username));
-            } else {
-              await Get.off<void>(() => const LoginPage());
-            }
-          }
-        } else {
-          // biometric disabled
-          final bool silentLoginSuccess =
-              (await Get.find<AuthService>().silentLogin()).success;
-          if (!silentLoginSuccess) {
-            // silent login failed
-            if (exsitingEmail != '' && exsitingEmail != null) {
-              // has user data in storage
-              final String username =
-                  await storage.secure.readString('username') ?? '';
-              await Get.off<void>(() => SimpleLoginPage(username: username));
-            } else {
-              await Get.off<void>(() => const LoginPage());
-            }
-          } else {
-            await Get.off<void>(() => const HomePage());
+            await Get.off<void>(() => const LoginPage());
           }
         }
+
+        Future<void> handleLogin(
+          StorageService storage,
+          String? exsitingEmail,
+          bool biometricEnabled,
+        ) async {
+          if (biometricEnabled) {
+            final bool biometricSuccess =
+                await Get.find<AuthService>().biometricLogin();
+            if (!biometricSuccess) {
+              await navigateAfterLogin(storage, exsitingEmail);
+              return;
+            }
+          }
+          final ApiResponse response = await Get.find<UserStateService>().get();
+          if (response.success) {
+            await Get.off<void>(() => const HomePage());
+          } else {
+            await navigateAfterLogin(storage, exsitingEmail);
+          }
+        }
+
+        await handleLogin(storage, exsitingEmail, biometricEnabled);
       },
     );
   }

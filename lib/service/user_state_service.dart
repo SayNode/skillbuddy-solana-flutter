@@ -43,13 +43,14 @@ class UserStateService extends GetxService {
     user.value = User();
   }
 
-  Future<void> get() async {
+  Future<ApiResponse> get() async {
     final ApiResponse response = await Get.find<APIService>().get('users');
     if (response.result != null) {
       user
         ..value = User.fromJson(response.result!)
         ..refresh();
     }
+    return response;
   }
 
   Future<List<String>> getAvatarList() async {
