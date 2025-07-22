@@ -32,7 +32,7 @@ class SkillBuddyScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     final CustomTheme theme = Get.put(ThemeService()).theme;
     Scaffold scaffold() => Scaffold(
-          backgroundColor: backgroundColor ?? theme.linen,
+          backgroundColor: backgroundColor ?? theme.seashell,
           resizeToAvoidBottomInset: resizeToAvoidBottomInset,
           appBar: title == null
               ? null
