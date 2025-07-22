@@ -50,8 +50,7 @@ class OnboardingPage extends GetView<OnboardingController> {
             ],
           ),
           Expanded(
-            child: Container(
-              color: theme.linen,
+            child: SizedBox(
               width: double.infinity,
               child: Column(
                 children: <Widget>[

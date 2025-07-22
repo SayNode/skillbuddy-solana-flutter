@@ -35,9 +35,8 @@ class SimpleLoginPage extends GetView<SimpleLoginController> {
         child: IntrinsicHeight(
           child: Stack(
             children: <Widget>[
-              Container(
+              SizedBox(
                 height: getRelativeHeight(250),
-                color: skillBuddyTheme.seashell,
                 child: Column(
                   children: <Widget>[
                     Gap(getRelativeHeight(100)),
