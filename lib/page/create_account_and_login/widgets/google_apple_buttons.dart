@@ -33,7 +33,7 @@ class GoogleAppleButtons extends GetView<AppleGoogleController> {
               ),
               style: ButtonStyle(
                 backgroundColor:
-                    WidgetStateProperty.all<Color>(skillBuddyTheme.seashell),
+                    WidgetStateProperty.all<Color>(Colors.transparent),
                 surfaceTintColor:
                     WidgetStateProperty.all<Color>(skillBuddyTheme.linen),
                 shape: WidgetStateProperty.all<OutlinedBorder>(
@@ -56,7 +56,7 @@ class GoogleAppleButtons extends GetView<AppleGoogleController> {
                 onPressed: () => controller.appleSignInPressed(),
                 style: ButtonStyle(
                   backgroundColor:
-                      WidgetStateProperty.all<Color>(skillBuddyTheme.seashell),
+                      WidgetStateProperty.all<Color>(Colors.transparent),
                   surfaceTintColor:
                       WidgetStateProperty.all<Color>(skillBuddyTheme.linen),
                   shape: WidgetStateProperty.all<OutlinedBorder>(
