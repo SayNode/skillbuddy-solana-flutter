@@ -100,6 +100,9 @@ class CreateAccountPage extends GetView<CreateAccountController> {
                         height: 20,
                         width: 20,
                         child: Checkbox(
+                          side: BorderSide(
+                            color: skillBuddyTheme.graphite,
+                          ),
                           activeColor: skillBuddyTheme.electric,
                           materialTapTargetSize:
                               MaterialTapTargetSize.shrinkWrap,
