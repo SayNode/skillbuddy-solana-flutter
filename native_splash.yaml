@@ -1,0 +1,11 @@
+flutter_native_splash:
+  android: true
+  ios: true
+  web: false
+
+  color: "#121212"
+  image: asset/images/logo_SkillBuddy.png
+
+  android_12:
+    color: "#121212"
+    image: asset/images/splash.png
