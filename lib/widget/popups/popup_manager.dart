@@ -45,9 +45,9 @@ class PopupManager {
     );
   }
 
-  static void openLoadingPopup() {
+  static void openLoadingPopup({String? title}) {
     openSkillBuddyPopup(
-      const LoadingPopup(),
+      title != null ? LoadingPopup(title: title) : const LoadingPopup(),
     );
   }
 

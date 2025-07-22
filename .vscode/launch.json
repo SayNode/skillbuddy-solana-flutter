@@ -10,7 +10,7 @@
             "type": "dart",
             "toolArgs": [
                 "--dart-define",
-                "API_DOMAIN=api-dev.skillbuddy.io",
+                "API_DOMAIN=api-prod.skillbuddy.io",
                 "--dart-define",
                 "API_KEY=07f0ed85-ea1b-49e6-8984-0a1fec6c5379",
             ]

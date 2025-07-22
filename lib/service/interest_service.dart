@@ -8,7 +8,7 @@ import '../page/onboarding/time_selection/time_selection.dart';
 import 'api_service.dart';
 import 'user_state_service.dart';
 
-const bool solanaCourseFilterActive = false;
+const bool solanaCourseFilterActive = true;
 
 class AreaOfInterest {
   AreaOfInterest({

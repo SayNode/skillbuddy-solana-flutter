@@ -37,7 +37,7 @@ class PayoutPopupController extends GetxController {
   }
 
   Future<void> deauthorizeWallet() async {
-    PopupManager.openLoadingPopup();
+    PopupManager.openLoadingPopup(title: 'Disconnecting wallet');
 
     await solanaService.deauthorizeWallet();
 
@@ -50,7 +50,7 @@ class PayoutPopupController extends GetxController {
 
   Future<void> sendBonkWithdrawalRequest() async {
     bool withdrawalSuccessful = false;
-    PopupManager.openLoadingPopup();
+    PopupManager.openLoadingPopup(title: 'Processing withdrawal request');
 
     try {
       final ApiResponse response =

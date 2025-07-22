@@ -137,7 +137,11 @@ class LessonButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(40),
           ),
         ),
-        surfaceTintColor: WidgetStateProperty.all<Color>(skillBuddyTheme.linen),
+        surfaceTintColor:
+            WidgetStateProperty.all<Color>(skillBuddyTheme.electric),
+        backgroundColor: WidgetStateProperty.all<Color>(
+          skillBuddyTheme.electric,
+        ),
         padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
           const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
         ),
@@ -156,14 +160,14 @@ class LessonButton extends StatelessWidget {
           Icon(
             icon,
             size: 20,
-            color: skillBuddyTheme.slate,
+            color: skillBuddyTheme.graphite,
           ),
           const Gap(8),
           Text(
             text,
             style: SkillBuddyTypography.fromColor(
-              skillBuddyTheme.slate,
-            ).kTextAdditional,
+              skillBuddyTheme.graphite,
+            ).kTextAdditional.copyWith(fontWeight: FontWeight.w700),
           ),
         ],
       ),
