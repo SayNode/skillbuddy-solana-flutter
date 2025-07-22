@@ -12,7 +12,7 @@ Future<T?> openSkillBuddyPopup<T>(
   Color? backgroundColor,
 }) async {
   final CustomTheme theme = Get.put(ThemeService()).theme;
-  final Color backgroundColor0 = backgroundColor ?? theme.linen;
+  final Color backgroundColor0 = backgroundColor ?? theme.seashell;
   return Get.dialog<T?>(
     Scaffold(
       resizeToAvoidBottomInset: true,

@@ -189,7 +189,10 @@ class IconBulletPoints extends StatelessWidget {
 
     return Row(
       children: <Widget>[
-        Icon(icon),
+        Icon(
+          icon,
+          color: skillBuddyTheme.graphite,
+        ),
         Gap(getRelativeWidth(10)),
         Text(
           text,

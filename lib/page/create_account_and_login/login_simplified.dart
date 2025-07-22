@@ -35,9 +35,8 @@ class SimpleLoginPage extends GetView<SimpleLoginController> {
         child: IntrinsicHeight(
           child: Stack(
             children: <Widget>[
-              Container(
+              SizedBox(
                 height: getRelativeHeight(250),
-                color: skillBuddyTheme.seashell,
                 child: Column(
                   children: <Widget>[
                     Gap(getRelativeHeight(100)),
@@ -117,6 +116,7 @@ class SimpleLoginPage extends GetView<SimpleLoginController> {
                         const Gap(8),
                         Material(
                           borderRadius: BorderRadius.circular(8),
+                          color: Colors.transparent,
                           child: InkWell(
                             borderRadius: BorderRadius.circular(8),
                             onTap: () => Get.to<Widget>(ForgotPassword.new),

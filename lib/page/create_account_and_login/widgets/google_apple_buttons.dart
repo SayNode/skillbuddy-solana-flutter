@@ -32,6 +32,8 @@ class GoogleAppleButtons extends GetView<AppleGoogleController> {
                 ),
               ),
               style: ButtonStyle(
+                backgroundColor:
+                    WidgetStateProperty.all<Color>(Colors.transparent),
                 surfaceTintColor:
                     WidgetStateProperty.all<Color>(skillBuddyTheme.linen),
                 shape: WidgetStateProperty.all<OutlinedBorder>(
@@ -53,6 +55,8 @@ class GoogleAppleButtons extends GetView<AppleGoogleController> {
               ElevatedButton(
                 onPressed: () => controller.appleSignInPressed(),
                 style: ButtonStyle(
+                  backgroundColor:
+                      WidgetStateProperty.all<Color>(Colors.transparent),
                   surfaceTintColor:
                       WidgetStateProperty.all<Color>(skillBuddyTheme.linen),
                   shape: WidgetStateProperty.all<OutlinedBorder>(
@@ -68,7 +72,9 @@ class GoogleAppleButtons extends GetView<AppleGoogleController> {
                     ),
                   ),
                 ),
-                child: SvgPicture.asset('asset/icons/apple.svg'),
+                child: SvgPicture.asset(
+                  'asset/icons/apple.svg',
+                ),
               ),
           ],
         ),
