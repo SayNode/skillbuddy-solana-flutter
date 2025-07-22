@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "644593034419-2583aeqna2odtfolaqrnhqoebc7l8pn6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.skillbuddy.academy",
+            "certificate_hash": "1922040f6d06b9676fe572cedef4a109d778dfd7"
+          }
+        },
+        {
           "client_id": "644593034419-9usu6ttfmdrg9junuh35ss6fmq5dro13.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -30,11 +38,27 @@
           }
         },
         {
+          "client_id": "644593034419-ba0vicejvtce7arlg646om7uovl6f4d0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.skillbuddy.academy",
+            "certificate_hash": "5c2014f27e9392efc6eaedded46561d9c760964a"
+          }
+        },
+        {
           "client_id": "644593034419-e1bmu81ed2s8q7bkaic4ngll3ikm42gd.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "io.skillbuddy.academy",
             "certificate_hash": "f361a6e3a3f6b065d58d0da70708fb5bfd2d2887"
+          }
+        },
+        {
+          "client_id": "644593034419-kpjh4vou77nd5n0ge96eeq5267c96vrj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.skillbuddy.academy",
+            "certificate_hash": "1ead1bbfdd3999f834cc56d1cdfe316966916fc5"
           }
         },
         {
@@ -71,7 +95,7 @@
               "client_type": 3
             },
             {
-              "client_id": "644593034419-ll9439rm978qreheudn30gntljmh8bu5.apps.googleusercontent.com",
+              "client_id": "644593034419-4i50723qa0lms3qqpganv1j1a0gm5m00.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
                 "bundle_id": "io.skillbuddy.academy"

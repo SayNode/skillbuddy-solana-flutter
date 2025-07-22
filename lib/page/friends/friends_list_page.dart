@@ -172,12 +172,13 @@ class FriendsCard extends StatelessWidget {
             ),
             const Spacer(),
             // if (isAFriend)
-            const Row(
+            Row(
               children: <Widget>[
-                Gap(200),
+                const Gap(200),
                 Icon(
                   Icons.arrow_forward_ios,
                   size: 15,
+                  color: skillBuddyTheme.electric,
                 ),
               ],
             ),

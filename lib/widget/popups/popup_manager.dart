@@ -8,7 +8,6 @@ import 'donate_popup.dart';
 import 'donate_success_popup.dart';
 import 'loading_payout_popup.dart';
 import 'payout_popup.dart';
-import 'payout_wallet_popup.dart';
 import 'successful_message_popup.dart';
 import 'tenent_delete_popup.dart';
 import 'verify_popup.dart';
@@ -37,12 +36,6 @@ class PopupManager {
   static void openPayoutWallet() {
     openSkillBuddyPopup(
       const VerifyPopup(),
-    );
-  }
-
-  static void verifyPopup() {
-    openSkillBuddyPopup(
-      const PayoutWalletPopup(),
     );
   }
 

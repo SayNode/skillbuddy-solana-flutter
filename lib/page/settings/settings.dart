@@ -44,7 +44,7 @@ class SettingsPage extends GetView<SettingsController> {
                   children: <Widget>[
                     IconButton(
                       onPressed: Get.back<void>,
-                      icon: const Icon(Icons.close),
+                      icon: Icon(Icons.close, color: skillBuddyTheme.graphite),
                     ),
                     Text(
                       'Settings & more'.tr,

@@ -88,6 +88,9 @@ class SolanaService extends GetxService {
     await client.deauthorize(authToken: authToken.value);
     authToken.value = '';
     publicKey.value = Uint8List(0);
+    connectedAccountLabel.value = '';
+    walletAddress.value = null;
+    walletBalance.value = null;
     await session.close();
   }
 

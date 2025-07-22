@@ -8,6 +8,8 @@ import 'package:get/get.dart';
 import '../../model/content/course.dart';
 import '../../model/user_model.dart';
 import '../../service/interest_service.dart';
+import '../../service/storage/shared_storage_service.dart';
+import '../../service/storage/storage_service.dart';
 import '../../service/theme_service.dart';
 import '../../service/user_state_service.dart';
 import '../../theme/theme.dart';
@@ -16,6 +18,7 @@ import '../../util/util.dart';
 import '../../widget/skillbuddy_chip.dart';
 import '../settings/settings.dart';
 import 'controller/discover_courses_controller.dart';
+import 'widget/check_out_rewards.dart';
 import 'widget/course_card.dart';
 import 'widget/search_widget.dart';
 
@@ -26,6 +29,9 @@ class DiscoverCoursesPage extends GetView<DiscoverCoursesController> {
   Widget build(BuildContext context) {
     final CustomTheme theme = ThemeService().theme;
     final User user = Get.find<UserStateService>().user.value;
+    final SharedStorageService sharedStorage =
+        Get.find<StorageService>().shared;
+
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,12 +54,18 @@ class DiscoverCoursesPage extends GetView<DiscoverCoursesController> {
                     () => const SettingsPage(),
                     transition: Transition.upToDown,
                   ),
-                  child: SvgPicture.asset('asset/icons/settings_icon.svg'),
+                  child: SvgPicture.asset(
+                    'asset/icons/settings_icon.svg',
+                    colorFilter:
+                        ColorFilter.mode(theme.graphite, BlendMode.srcIn),
+                  ),
                 ),
               ],
             ),
           ),
-          const Gap(8),
+          if (sharedStorage.readInt('showBonkBanner') == null ||
+              sharedStorage.readInt('showBonkBanner') == 1)
+            const CheckOutRewards(),
           SearchWidget(onChanged: controller.updateSearchText),
           const Gap(5),
           Obx(
@@ -127,7 +139,13 @@ class DiscoverCoursesPage extends GetView<DiscoverCoursesController> {
                                     ).kTextAdditional,
                                   ),
                                   const Spacer(),
-                                  SvgPicture.asset('asset/icons/continue.svg'),
+                                  SvgPicture.asset(
+                                    'asset/icons/continue.svg',
+                                    colorFilter: ColorFilter.mode(
+                                      theme.electric,
+                                      BlendMode.srcIn,
+                                    ),
+                                  ),
                                 ],
                               ),
                               const Gap(2),

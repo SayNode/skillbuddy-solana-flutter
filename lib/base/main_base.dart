@@ -62,6 +62,14 @@ abstract class MainBase {
         <DeviceOrientation>[DeviceOrientation.portraitUp],
       );
 
+      SystemChrome.setSystemUIOverlayStyle(
+        const SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent,
+          statusBarIconBrightness: Brightness.light,
+          statusBarBrightness: Brightness.dark,
+        ),
+      );
+
       // Check if it's the first run:
       isFirstRun = await IsFirstRun.isFirstRun();
 

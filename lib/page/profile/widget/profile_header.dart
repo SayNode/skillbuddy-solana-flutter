@@ -3,6 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../../model/user_model.dart';
+import '../../../service/theme_service.dart';
+import '../../../theme/theme.dart';
 import '../../../util/util.dart';
 import '../../settings/settings.dart';
 import 'top_section_profile.dart';
@@ -41,6 +43,8 @@ class ProfileHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final CustomTheme theme = Get.find<ThemeService>().theme;
+
     return Stack(
       children: <Widget>[
         Row(
@@ -53,9 +57,10 @@ class ProfileHeader extends StatelessWidget {
                 ),
                 child: IconButton(
                   onPressed: () => backButtonFunction ?? Get.back<void>(),
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.arrow_back,
                     size: 24,
+                    color: theme.graphite,
                   ),
                 ),
               )
@@ -71,7 +76,11 @@ class ProfileHeader extends StatelessWidget {
                     () => const SettingsPage(),
                     transition: Transition.upToDown,
                   ),
-                  icon: SvgPicture.asset('asset/icons/settings_icon.svg'),
+                  icon: SvgPicture.asset(
+                    'asset/icons/settings_icon.svg',
+                    colorFilter:
+                        ColorFilter.mode(theme.graphite, BlendMode.srcIn),
+                  ),
                 ),
               )
             else

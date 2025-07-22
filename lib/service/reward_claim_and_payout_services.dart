@@ -7,6 +7,35 @@ import 'api_service.dart';
 class RewardClaimAndPayoutService extends GetxService {
   APIService apiService = Get.put(APIService());
 
+  Future<ApiResponse> withdrawBonk(String walletAddress, int amount) async {
+    final ApiResponse response = await apiService.sendWithdrawalRequest(
+      '/solana/trans-req-bonk/',
+      fields: <String, dynamic>{
+        'trans_req_bonk': walletAddress,
+        'amount_bonk': amount,
+      },
+    );
+
+    if (response.statusCode == 200) {
+      try {
+        debugPrint('Bonk payout service: ${response.message}');
+        return response;
+      } catch (error) {
+        return ApiResponse(
+          statusCode: response.statusCode,
+          message: 'Error while parsing Payout Service: $error',
+          success: response.success,
+        );
+      }
+    } else {
+      return ApiResponse(
+        statusCode: response.statusCode,
+        message: response.message,
+        success: response.success,
+      );
+    }
+  }
+
   Future<String?> claimCourseReward(
     int courseId,
   ) async {

@@ -44,10 +44,10 @@ Future<T?> openSkillBuddyPopup<T>(
                                   padding: const EdgeInsets.all(18),
                                   child: GestureDetector(
                                     onTap: () => Get.back<void>(),
-                                    child: Image.asset(
-                                      'asset/icons/close_icon.png',
-                                      width: 24,
-                                      height: 24,
+                                    child: Icon(
+                                      Icons.close,
+                                      color: theme.graphite,
+                                      size: 24,
                                     ),
                                   ),
                                 ),

@@ -104,9 +104,12 @@ class CoursePage extends GetView<CourseDetailsController> {
                                                       .enrolledUsers
                                                       .toString(),
                                                   style: SkillBuddyTypography
-                                                      .fromColor(
-                                                    skillBuddyTheme.graphite,
-                                                  ).kTextAdditional,
+                                                          .fromColor(
+                                                    skillBuddyTheme.linen,
+                                                  ).kTextAdditional.copyWith(
+                                                        fontWeight:
+                                                            FontWeight.w700,
+                                                      ),
                                                 ),
                                                 const Gap(15),
                                                 Image.asset(
@@ -120,9 +123,12 @@ class CoursePage extends GetView<CourseDetailsController> {
                                                       .course.value.rewardAmount
                                                       .toString(),
                                                   style: SkillBuddyTypography
-                                                      .fromColor(
-                                                    skillBuddyTheme.graphite,
-                                                  ).kTextAdditional,
+                                                          .fromColor(
+                                                    skillBuddyTheme.linen,
+                                                  ).kTextAdditional.copyWith(
+                                                        fontWeight:
+                                                            FontWeight.w700,
+                                                      ),
                                                 ),
                                               ],
                                             ),
@@ -267,7 +273,11 @@ class CoursePage extends GetView<CourseDetailsController> {
                                   const Gap(20),
                                   Row(
                                     children: <Widget>[
-                                      const Expanded(child: Divider()),
+                                      Expanded(
+                                        child: Divider(
+                                          color: skillBuddyTheme.electric,
+                                        ),
+                                      ),
                                       const Gap(20),
                                       Text(
                                         '${'Module'.tr} ${moduleIndex + 1}',
@@ -276,7 +286,11 @@ class CoursePage extends GetView<CourseDetailsController> {
                                         ).kParagraph.copyWith(fontSize: 16),
                                       ),
                                       const Gap(20),
-                                      const Expanded(child: Divider()),
+                                      Expanded(
+                                        child: Divider(
+                                          color: skillBuddyTheme.electric,
+                                        ),
+                                      ),
                                     ],
                                   ),
                                   const Gap(8),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../service/logger_service.dart';
@@ -43,9 +44,10 @@ class SkillBuddyScaffold extends StatelessWidget {
                   // Provide your own custom leading widget.
                   leading: backButton
                       ? IconButton(
-                          icon: const Icon(
+                          icon: Icon(
                             Icons.arrow_back,
                             size: 24,
+                            color: Get.find<ThemeService>().theme.graphite,
                           ),
                           onPressed: () => Get.back<void>(),
                         )
@@ -73,9 +75,16 @@ class SkillBuddyScaffold extends StatelessWidget {
                 )
               : null,
         );
-    return ColoredBox(
-      color: backgroundColor ?? theme.linen,
-      child: useSafeArea ? SafeArea(child: scaffold()) : scaffold(),
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.light,
+        statusBarBrightness: Brightness.dark,
+      ),
+      child: ColoredBox(
+        color: backgroundColor ?? theme.linen,
+        child: useSafeArea ? SafeArea(child: scaffold()) : scaffold(),
+      ),
     );
   }
 }
