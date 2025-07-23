@@ -5,10 +5,13 @@ import '../../../service/content_service.dart';
 import '../../../service/user_state_service.dart';
 import '../../../util/util.dart';
 import '../../explore_course/course_page.dart';
+import '../widget/nft_badge_card.dart';
 
 class ProfileController extends GetxController {
   late RxBool seeMore = false.obs;
   RxBool loading = false.obs;
+  Rx<NftBadgeStatus> firstNftBadgeStatus = NftBadgeStatus.locked.obs;
+  Rx<NftBadgeStatus> secondNftBadgeStatus = NftBadgeStatus.locked.obs;
   //Services
   final ContentService contentService = Get.find<ContentService>();
 

@@ -16,6 +16,7 @@ import '../friends/friends_list_page.dart';
 import 'controller/profile_controller.dart';
 import 'edit_bio_page.dart';
 import 'edit_name_page.dart';
+import 'widget/nft_badge_card.dart';
 import 'widget/profile_cards.dart';
 import 'widget/profile_course_card.dart';
 import 'widget/profile_header.dart';
@@ -70,7 +71,13 @@ class ProfilePage extends GetView<ProfileController> {
               coursesCompleted: contentService.coursesCompleted(),
             ),
           ),
-          Gap(getRelativeHeight(32)),
+          Obx(
+            () => NftBadgeCard(
+              firstNftBadgeStatus: controller.firstNftBadgeStatus.value,
+              secondNftBadgeStatus: controller.secondNftBadgeStatus.value,
+            ),
+          ),
+          Gap(getRelativeHeight(30)),
           Align(
             alignment: Alignment.centerLeft,
             child: Padding(
