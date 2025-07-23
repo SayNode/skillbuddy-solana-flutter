@@ -6,9 +6,9 @@ class DonateListController extends GetxController {
   // List of charities
   final List<Charity> charities = <Charity>[
     Charity(
-      title: 'Human Rights Foundation',
-      image: 'asset/icons/human_rights_logo.svg',
-      charityAddress: 'hrf@btcpay.hrf.org',
+      title: 'Dolphin Project',
+      image: 'asset/images/dolphin_project.png',
+      charityAddress: 'DseusjU6osBZ3Q3L2z7Uq5cUewht2y3UstVV7daXMCnc',
     ),
   ];
 }
