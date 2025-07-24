@@ -60,9 +60,9 @@ class SettingsPage extends GetView<SettingsController> {
                 GestureDetector(
                   onLongPress: () => Get.dialog<void>(
                     Dialog(
+                      backgroundColor: skillBuddyTheme.seashell,
                       child:
-
-                          ///Todo remove when in production
+                          //Todo remove when in production
                           Obx(
                         () => ListView(
                           children: <Widget>[
