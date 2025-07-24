@@ -20,6 +20,7 @@ class CallToActionPage extends GetView<QuizResultsController> {
     final CustomTheme theme = Get.put(ThemeService()).theme;
 
     return SkillBuddyScaffold(
+      title: '',
       backButton: true,
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
