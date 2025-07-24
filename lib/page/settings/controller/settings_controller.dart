@@ -30,6 +30,7 @@ class SettingsController extends GetxController with WidgetsBindingObserver {
   final LocalAuthentication auth = LocalAuthentication();
   RxBool isBiometricEnabled = false.obs;
   RxBool isNotificationsEnabled = false.obs;
+  RxBool socialLogin = false.obs;
   final User user = Get.find<UserStateService>().user.value;
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
@@ -82,6 +83,7 @@ class SettingsController extends GetxController with WidgetsBindingObserver {
     if (!user.isVerified) {
       Get.find<UserStateService>().get();
     }
+    socialLogin.value = storageService.shared.readBool('socialLogin') ?? false;
   }
 
   @override
@@ -249,6 +251,7 @@ class SettingsController extends GetxController with WidgetsBindingObserver {
         job: () async {
           await storageService.secure.delete('email');
           await storageService.secure.delete('username');
+          await storageService.shared.delete('socialLogin');
           await authService.logout();
 
           await Get.offAll<void>(() => const LoginPage());
