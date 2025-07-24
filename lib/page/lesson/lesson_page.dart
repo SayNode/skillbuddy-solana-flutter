@@ -134,9 +134,13 @@ class LessonButton extends StatelessWidget {
       style: ButtonStyle(
         shape: WidgetStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
+            side: BorderSide(
+              color: skillBuddyTheme.slate,
+            ),
             borderRadius: BorderRadius.circular(40),
           ),
         ),
+        backgroundColor: WidgetStateProperty.all<Color>(skillBuddyTheme.linen),
         surfaceTintColor: WidgetStateProperty.all<Color>(skillBuddyTheme.linen),
         padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
           const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
@@ -151,21 +155,24 @@ class LessonButton extends StatelessWidget {
           action!();
         }
       },
-      child: Row(
-        children: <Widget>[
-          Icon(
-            icon,
-            size: 20,
-            color: skillBuddyTheme.slate,
-          ),
-          const Gap(8),
-          Text(
-            text,
-            style: SkillBuddyTypography.fromColor(
-              skillBuddyTheme.slate,
-            ).kTextAdditional,
-          ),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 4),
+        child: Row(
+          children: <Widget>[
+            Icon(
+              icon,
+              size: 20,
+              color: skillBuddyTheme.slate,
+            ),
+            const Gap(8),
+            Text(
+              text,
+              style: SkillBuddyTypography.fromColor(
+                skillBuddyTheme.slate,
+              ).kTextAdditional,
+            ),
+          ],
+        ),
       ),
     );
   }
