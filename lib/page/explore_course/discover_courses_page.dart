@@ -357,7 +357,8 @@ class DiscoverCoursesPage extends GetView<DiscoverCoursesController> {
                           children: <Widget>[
                             for (final MapEntry<AreaOfInterest,
                                 List<Course>> entry in coursesToDisplay)
-                              (entry.value.isEmpty)
+                              (entry.value.isEmpty ||
+                                      entry.key.title == 'Bitcoin (BTC)')
                                   ? const SizedBox()
                                   : Column(
                                       mainAxisSize: MainAxisSize.min,
