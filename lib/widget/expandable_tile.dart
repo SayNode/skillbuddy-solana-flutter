@@ -19,12 +19,11 @@ class ExpandableTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final CustomTheme theme = Get.put(ThemeService()).theme;
-
+    final CustomTheme themeService = Get.find<ThemeService>().theme;
     final RxBool expanded = false.obs;
     return Obx(
       () => Material(
-        color: Colors.transparent,
+        color: themeService.linen,
         child: InkWell(
           onTap: () => expanded.value = !expanded.value,
           child: Padding(
@@ -46,7 +45,7 @@ class ExpandableTile extends StatelessWidget {
                         duration: const Duration(milliseconds: 300),
                         child: Icon(
                           Icons.expand_more,
-                          color: theme.graphite,
+                          color: themeService.graphite,
                         ),
                       ),
                     ],

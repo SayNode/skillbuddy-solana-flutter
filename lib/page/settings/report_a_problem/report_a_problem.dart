@@ -41,6 +41,13 @@ class ReportAProblemPage extends GetView<ReportAProblemController> {
                       color: theme.graphite,
                     ),
                   ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(
+                      color: theme.graphite,
+                      width: 2,
+                    ),
+                  ),
                   hintText: "Describe the issue you're having with the app".tr,
                   hintStyle:
                       SkillBuddyTypography.fromColor(theme.slate).kParagraph,
