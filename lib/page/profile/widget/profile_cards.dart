@@ -77,7 +77,7 @@ class ProfileCards extends StatelessWidget {
         crossAxisCount: 2,
         mainAxisSpacing: 5,
         crossAxisSpacing: 5,
-        childAspectRatio: 2.8,
+        childAspectRatio: 2.5,
         physics: const NeverScrollableScrollPhysics(),
         children: cards,
       ),
