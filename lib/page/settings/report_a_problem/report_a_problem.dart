@@ -35,10 +35,16 @@ class ReportAProblemPage extends GetView<ReportAProblemController> {
                     SkillBuddyTypography.fromColor(theme.graphite).kParagraph,
                 onChanged: (String text) => controller.validateText(text),
                 decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(
+                      color: theme.graphite,
+                    ),
+                  ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                     borderSide: BorderSide(
-                      color: theme.slate,
+                      color: theme.graphite,
                       width: 2,
                     ),
                   ),

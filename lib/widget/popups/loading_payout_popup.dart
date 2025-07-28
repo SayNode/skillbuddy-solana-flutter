@@ -9,7 +9,9 @@ import '../../theme/typography.dart';
 import '../../util/util.dart';
 
 class LoadingPopup extends StatelessWidget {
-  const LoadingPopup({super.key});
+  const LoadingPopup({super.key, this.title = 'Connecting to wallet'});
+
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class LoadingPopup extends StatelessWidget {
           children: <Widget>[
             const Gap(45),
             Text(
-              'Connecting to wallet'.tr,
+              title.tr,
               style: SkillBuddyTypography.fromColor(
                 skillBuddyTheme.graphite,
               ).kTitle,

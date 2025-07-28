@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../service/theme_service.dart';
+import '../theme/theme.dart';
 import '../util/util.dart';
 
 class ExpandableTile extends StatelessWidget {
@@ -17,9 +19,11 @@ class ExpandableTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final CustomTheme themeService = Get.find<ThemeService>().theme;
     final RxBool expanded = false.obs;
     return Obx(
       () => Material(
+        color: themeService.linen,
         child: InkWell(
           onTap: () => expanded.value = !expanded.value,
           child: Padding(
@@ -39,7 +43,10 @@ class ExpandableTile extends StatelessWidget {
                       AnimatedRotation(
                         turns: expanded.value ? 0.5 : 0,
                         duration: const Duration(milliseconds: 300),
-                        child: const Icon(Icons.expand_more),
+                        child: Icon(
+                          Icons.expand_more,
+                          color: themeService.graphite,
+                        ),
                       ),
                     ],
                   ),
