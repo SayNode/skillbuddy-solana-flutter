@@ -120,4 +120,43 @@ class RewardClaimAndPayoutService extends GetxService {
       );
     }
   }
+
+  Future<ApiResponse> redeemNFT(
+    String walletAddress,
+    int nftNumber,
+  ) async {
+    final Map<String, dynamic> requestBody = <String, dynamic>{
+      'receiver_wallet_address': walletAddress,
+      'nft_number': nftNumber,
+    };
+
+    final ApiResponse response = await apiService.post(
+      '/solana/trans-req-nft/',
+      body: requestBody,
+    );
+    debugPrint('Redeem NFT Service: ${response}');
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      try {
+        debugPrint('Redeem NFT Service: ${response.message}');
+        return response;
+      } catch (error) {
+        return ApiResponse(
+          statusCode: response.statusCode,
+          message: 'Error while parsing Redeem NFT Service: $error',
+          success: response.success,
+        );
+      }
+    } else {
+      Get.snackbar(
+        'Error'.tr,
+        'Failed to redeem NFT'.tr,
+      );
+      debugPrint('Redeem NFT Service Error: ${response.message}');
+      return ApiResponse(
+        statusCode: response.statusCode,
+        message: response.message,
+        success: response.success,
+      );
+    }
+  }
 }

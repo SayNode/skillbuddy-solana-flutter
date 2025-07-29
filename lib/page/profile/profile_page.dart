@@ -16,7 +16,7 @@ import '../friends/friends_list_page.dart';
 import 'controller/profile_controller.dart';
 import 'edit_bio_page.dart';
 import 'edit_name_page.dart';
-// import 'widget/nft_badge_card.dart';
+import 'widget/nft_badge_card.dart';
 import 'widget/profile_cards.dart';
 import 'widget/profile_course_card.dart';
 import 'widget/profile_header.dart';
@@ -71,13 +71,41 @@ class ProfilePage extends GetView<ProfileController> {
               coursesCompleted: contentService.coursesCompleted(),
             ),
           ),
-          //TODO: not implemented, waiting for backend
-          // Obx(
-          //   () => NftBadgeCard(
-          //     firstNftBadgeStatus: controller.firstNftBadgeStatus.value,
-          //     secondNftBadgeStatus: controller.secondNftBadgeStatus.value,
-          //   ),
-          // ),
+          Gap(getRelativeHeight(30)),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: getRelativeWidth(15)),
+              child: Text(
+                'Courses Enrolled'.tr,
+                style: SkillBuddyTypography.fromColor(skillBuddyTheme.graphite)
+                    .kTitle,
+              ),
+            ),
+          ),
+          Gap(getRelativeHeight(14)),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: getRelativeWidth(20)),
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: NftBadgeCard(
+                    title: 'Completed 2 solana courses',
+                    status: NftBadgeStatus.unlocked,
+                    onTap: () => controller.redeemNFT(1),
+                  ),
+                ),
+                const Gap(10), // Optional spacing
+                Expanded(
+                  child: NftBadgeCard(
+                    title: 'Completed all solana courses',
+                    status: NftBadgeStatus.unlocked,
+                    onTap: () => controller.redeemNFT(2),
+                  ),
+                ),
+              ],
+            ),
+          ),
           Gap(getRelativeHeight(30)),
           Align(
             alignment: Alignment.centerLeft,

@@ -14,6 +14,6 @@ class SkillBuddyConstants {
   static const String testnetWsUrl = 'wss://api.testnet.solana.com';
   static const String testnetCluster = 'testnet';
   static const String mainnetRpcUrl = 'https://api.mainnet-beta.solana.com';
-  static const String mainnetWsUrl = 'wss://api.mainnet-beta.solana.com';
+  static const String mainnetWsUrl = 'wss://api.mainnet-beta.solana.com/';
   static const String mainnetCluster = 'mainnet-beta';
 }
