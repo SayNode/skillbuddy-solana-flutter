@@ -16,6 +16,8 @@ import 'interest_service.dart';
 /// needs the secure storage service to be initialized
 class ContentService extends GetxService {
   late final DataLoader<List<Course>> myCourses;
+  RxInt solanaCourseCount = 0.obs;
+  RxInt solanaCourseCompletedCount = 0.obs;
 
   @override
   void onInit() {
@@ -25,7 +27,12 @@ class ContentService extends GetxService {
       loaderCallback: _getUserEnrolledCourses,
     );
     //add listener to myCourses to update courseCompleted
-    myCourses.data.listen((_) => coursesCompleted());
+    myCourses.data.listen((_) {
+      solanaCourseCompletedCount.value = myCourses.data.value
+          .where((Course e) => e.areaOfInterestList.contains('Solana'))
+          .where((Course e) => e.isCompleted)
+          .length;
+    });
   }
 
   //Services

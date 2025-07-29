@@ -2,12 +2,10 @@ import 'package:get/get.dart';
 
 import '../../../model/content/course.dart';
 import '../../../service/content_service.dart';
-import '../../../service/reward_claim_and_payout_services.dart';
 import '../../../service/user_state_service.dart';
 import '../../../util/util.dart';
 import '../../../widget/popups/popup_manager.dart';
 import '../../explore_course/course_page.dart';
-import '../../solana/solana_service.dart';
 import '../widget/nft_badge_card.dart';
 
 class ProfileController extends GetxController {
@@ -25,6 +23,15 @@ class ProfileController extends GetxController {
     await checkUserName();
     await Get.find<UserStateService>().get();
     await contentService.fetchData();
+    final int solanaCourseCount = contentService.solanaCourseCount.value;
+    firstNftBadgeStatus.value =
+        contentService.solanaCourseCompletedCount.value >= 2
+            ? NftBadgeStatus.unlocked
+            : NftBadgeStatus.locked;
+    secondNftBadgeStatus.value =
+        contentService.solanaCourseCompletedCount.value >= solanaCourseCount
+            ? NftBadgeStatus.unlocked
+            : NftBadgeStatus.locked;
     loading.value = false;
   }
 
@@ -46,14 +53,26 @@ class ProfileController extends GetxController {
   }
 
   Future<void> redeemNFT(int nftNumber) async {
-    // chceck if user has wallet connected
-    final String? userWallet = Get.find<SolanaService>().walletAddress.value;
-    if (userWallet != null && userWallet.isNotEmpty) {
-      await Get.find<RewardClaimAndPayoutService>()
-          .redeemNFT(userWallet, nftNumber);
-      // PopupManager.openPayoutPopup();
-    } else {
-      PopupManager.openPayoutPopup();
-    }
+    PopupManager.openConnectWallet(nftNumber);
+
+    // final bool success = await Get.find<RewardClaimAndPayoutService>()
+    //     .redeemNFT(userWallet, nftNumber);
+    // if (success) {
+    //   if (nftNumber == 1) {
+    //     firstNftBadgeStatus.value = NftBadgeStatus.redeemed;
+    //   } else if (nftNumber == 2) {
+    //     secondNftBadgeStatus.value = NftBadgeStatus.redeemed;
+    //   }
+    // } else {
+    //   Get.snackbar(
+    //     'Error'.tr,
+    //     'Failed to redeem NFT'.tr,
+    //   );
+    //   if (nftNumber == 1) {
+    //     firstNftBadgeStatus.value = NftBadgeStatus.locked;
+    //   } else if (nftNumber == 2) {
+    //     secondNftBadgeStatus.value = NftBadgeStatus.locked;
+    //   }
+    // }
   }
 }

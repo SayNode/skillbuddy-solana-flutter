@@ -44,6 +44,8 @@ class Course {
         enrolledUsers = json['enrolled_users'] ?? 0,
         isFirstTime = json['is_first_time'] ?? true,
         isCompleted = json['is_completed'] ?? false,
+        areaOfInterestList =
+            List<String>.from(json['areas_of_interest'] ?? <String>[]),
         activated = json['activated'] ?? false;
 
   int id = -1;
@@ -59,6 +61,7 @@ class Course {
   bool isFirstTime = true;
   bool isCompleted = false;
   bool activated = false;
+  List<String> areaOfInterestList = <String>[];
 
   Map<String, dynamic> toJson() => <String, dynamic>{
         'id': id,

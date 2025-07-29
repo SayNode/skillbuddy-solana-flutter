@@ -89,18 +89,28 @@ class ProfilePage extends GetView<ProfileController> {
             child: Row(
               children: <Widget>[
                 Expanded(
-                  child: NftBadgeCard(
-                    title: 'Completed 2 solana courses',
-                    status: NftBadgeStatus.unlocked,
-                    onTap: () => controller.redeemNFT(1),
+                  child: Obx(
+                    () => NftBadgeCard(
+                      title: 'Completed 2 solana courses',
+                      status: controller.firstNftBadgeStatus.value,
+                      onTap: () => controller.firstNftBadgeStatus.value ==
+                              NftBadgeStatus.unlocked
+                          ? controller.redeemNFT(1)
+                          : null,
+                    ),
                   ),
                 ),
                 const Gap(10), // Optional spacing
                 Expanded(
-                  child: NftBadgeCard(
-                    title: 'Completed all solana courses',
-                    status: NftBadgeStatus.unlocked,
-                    onTap: () => controller.redeemNFT(2),
+                  child: Obx(
+                    () => NftBadgeCard(
+                      title: 'Completed all solana courses',
+                      status: controller.secondNftBadgeStatus.value,
+                      onTap: () => controller.secondNftBadgeStatus.value ==
+                              NftBadgeStatus.unlocked
+                          ? controller.redeemNFT(2)
+                          : null,
+                    ),
                   ),
                 ),
               ],

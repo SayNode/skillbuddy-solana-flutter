@@ -1,0 +1,70 @@
+import 'package:get/get.dart';
+
+import '../../../page/solana/solana_service.dart';
+
+import '../../../service/reward_claim_and_payout_services.dart';
+import '../popup_manager.dart';
+
+class RedeemNFTPopupController extends GetxController {
+  final RewardClaimAndPayoutService rewardClaimAndPayoutService =
+      Get.find<RewardClaimAndPayoutService>();
+
+  final SolanaService solanaService = Get.find<SolanaService>();
+  final RxBool isWalletConnected = false.obs;
+  final RxString walletAddress = ''.obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    isWalletConnected.value = solanaService.authToken.isNotEmpty;
+    walletAddress.value = solanaService.walletAddress.value ?? '';
+  }
+
+  Future<bool> authorizeWallet() async {
+    PopupManager.openLoadingPopup();
+    isWalletConnected.value = false;
+
+    await solanaService.authorizeWallet();
+
+    if (solanaService.authToken.isNotEmpty &&
+        solanaService.walletAddress.value != null) {
+      isWalletConnected.value = true;
+      Get.back<void>();
+    }
+    Get.back<bool>(result: isWalletConnected.value);
+    return isWalletConnected.value;
+  }
+
+  Future<void> deauthorizeWallet() async {
+    PopupManager.openLoadingPopup(title: 'Disconnecting wallet');
+
+    await solanaService.deauthorizeWallet();
+
+    if (solanaService.authToken.isEmpty) {
+      isWalletConnected.value = false;
+    }
+
+    Get.back<void>();
+  }
+
+  Future<void> redeemNFT(int nftNumber) async {
+    PopupManager.openLoadingPopup(title: 'Redeeming NFT');
+
+    try {
+      final bool success = await rewardClaimAndPayoutService.redeemNFT(
+        solanaService.walletAddress.value ?? '',
+        nftNumber,
+      );
+
+      if (success) {
+        PopupManager.openSuccessPopup();
+      } else {
+        Get.snackbar('Redemption failed', 'Please try again later');
+      }
+    } catch (e) {
+      Get.snackbar('Redemption failed', e.toString());
+    } finally {
+      Get.back<void>();
+    }
+  }
+}

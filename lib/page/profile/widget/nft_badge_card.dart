@@ -8,7 +8,7 @@ import '../../../theme/theme.dart';
 import '../../../theme/typography.dart';
 import '../../../util/util.dart';
 
-enum NftBadgeStatus { locked, unlocked, redeemed }
+enum NftBadgeStatus { locked, unlocked, redeeming, redeemed }
 
 class NftBadgeCard extends StatelessWidget {
   const NftBadgeCard({
@@ -62,7 +62,9 @@ class NftBadgeCard extends StatelessWidget {
                         ? 'Locked'
                         : status == NftBadgeStatus.unlocked
                             ? 'Unlocked'
-                            : 'Redeemed',
+                            : status == NftBadgeStatus.redeeming
+                                ? 'Redeeming ...'
+                                : 'Redeemed',
                     style: SkillBuddyTypography.fromColor(
                       status == NftBadgeStatus.locked
                           ? skillBuddyTheme.red
