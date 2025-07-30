@@ -47,7 +47,7 @@ class NftBadgeCard extends StatelessWidget {
               child: Image.asset(
                 nft,
                 width: getRelativeWidth(50),
-                height: getRelativeHeight(50),
+                height: getRelativeWidth(50),
                 fit: BoxFit.cover,
               ),
             ),
