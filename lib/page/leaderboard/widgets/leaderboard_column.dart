@@ -61,13 +61,13 @@ class LeaderboardColumn extends StatelessWidget {
                       ? Image.asset(
                           'asset/images/avatar_default.png',
                           width: getRelativeWidth(60),
-                          height: getRelativeHeight(60),
+                          height: getRelativeWidth(60),
                           fit: BoxFit.cover,
                         )
                       : Image.network(
                           avatar,
                           width: getRelativeWidth(60),
-                          height: getRelativeHeight(60),
+                          height: getRelativeWidth(60),
                           fit: BoxFit.cover,
                           errorBuilder: (
                             BuildContext context,

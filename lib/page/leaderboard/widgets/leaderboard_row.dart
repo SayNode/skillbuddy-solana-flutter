@@ -54,8 +54,6 @@ class LeaderboardRow extends StatelessWidget {
                     ? Image.asset('asset/images/avatar_default.png')
                     : Image.network(
                         avatar,
-                        width: getRelativeWidth(40),
-                        height: getRelativeHeight(40),
                         fit: BoxFit.cover,
                         errorBuilder: (
                           BuildContext context,
