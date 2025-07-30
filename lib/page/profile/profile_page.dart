@@ -91,7 +91,7 @@ class ProfilePage extends GetView<ProfileController> {
                 Expanded(
                   child: Obx(
                     () => NftBadgeCard(
-                      title: 'Completed 2 solana courses',
+                      title: 'Completed 2 Solana courses'.tr,
                       status: controller.firstNftBadgeStatus.value,
                       onTap: () => controller.firstNftBadgeStatus.value ==
                               NftBadgeStatus.unlocked
@@ -104,7 +104,7 @@ class ProfilePage extends GetView<ProfileController> {
                 Expanded(
                   child: Obx(
                     () => NftBadgeCard(
-                      title: 'Completed all solana courses',
+                      title: 'Completed all Solana courses'.tr,
                       status: controller.secondNftBadgeStatus.value,
                       onTap: () => controller.secondNftBadgeStatus.value ==
                               NftBadgeStatus.unlocked
