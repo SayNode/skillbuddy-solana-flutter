@@ -134,6 +134,9 @@ class LessonButton extends StatelessWidget {
       style: ButtonStyle(
         shape: WidgetStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
+            side: BorderSide(
+              color: skillBuddyTheme.slate,
+            ),
             borderRadius: BorderRadius.circular(40),
           ),
         ),

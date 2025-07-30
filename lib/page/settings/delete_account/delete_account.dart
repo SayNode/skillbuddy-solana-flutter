@@ -33,35 +33,39 @@ class DeleteAccountPage extends GetView<DeleteAccountController> {
             ),
             Gap(getRelativeHeight(9)),
             Expanded(
-              child: ListView.separated(
-                itemCount: controller.deleteInfo.length,
-                separatorBuilder: (BuildContext context, int i) =>
-                    Gap(getRelativeHeight(9)),
-                itemBuilder: (BuildContext context, int i) => Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: getRelativeHeight(9),
-                  ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        controller.deleteInfo[i].title,
-                        style: SkillBuddyTypography.fromColor(theme.graphite)
-                            .kParagraphSemiBold,
-                      ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: ListView.separated(
+                  physics: const ClampingScrollPhysics(),
+                  itemCount: controller.deleteInfo.length,
+                  separatorBuilder: (BuildContext context, int i) =>
                       Gap(getRelativeHeight(9)),
-                      Text(
-                        controller.deleteInfo[i].description,
-                        style: SkillBuddyTypography.fromColor(theme.graphite)
-                            .kTextAdditional,
-                      ),
-                    ],
+                  itemBuilder: (BuildContext context, int i) => Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: getRelativeHeight(9),
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          controller.deleteInfo[i].title,
+                          style: SkillBuddyTypography.fromColor(theme.graphite)
+                              .kParagraphSemiBold,
+                        ),
+                        Gap(getRelativeHeight(9)),
+                        Text(
+                          controller.deleteInfo[i].description,
+                          style: SkillBuddyTypography.fromColor(theme.graphite)
+                              .kTextAdditional,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
-            const Spacer(),
+            // const Spacer(),
             SkillBuddyButton(
               text: 'Oops, I changed my mind'.tr,
               onTap: controller.back,

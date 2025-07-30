@@ -45,9 +45,13 @@ class ContentService extends GetxService {
       try {
         final List<dynamic>? untypedList = response.results;
         for (int i = 0; i < (untypedList?.length ?? 0); i++) {
-          final Course course =
-              Course.fromJson(untypedList?[i] ?? <String, dynamic>{});
-          ret.add(course);
+          // ignore: avoid_dynamic_calls
+          if (untypedList?[i]['areas_of_interest'].contains('Bitcoin (BTC)') ==
+              false) {
+            final Course course =
+                Course.fromJson(untypedList?[i] ?? <String, dynamic>{});
+            ret.add(course);
+          }
         }
         return ret;
       } catch (error) {
@@ -73,8 +77,10 @@ class ContentService extends GetxService {
     final ApiResponse response = await apiService.get(
       'course/',
       queryParameters: <String, dynamic>{
-        'areas_of_interest':
-            interests.areas.map((AreaOfInterest e) => e.title).join(','),
+        'areas_of_interest': interests.areas
+            .where((AreaOfInterest e) => e.title != 'Bitcoin (BTC)')
+            .map((AreaOfInterest e) => e.title)
+            .join(','),
       },
     );
     if (response.statusCode == 200) {
@@ -87,6 +93,7 @@ class ContentService extends GetxService {
               Course.fromJson(element),
           ];
         });
+
         return ret;
       } catch (error) {
         throw ContentFetchException(

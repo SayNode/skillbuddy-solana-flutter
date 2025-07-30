@@ -58,6 +58,7 @@ class ReportAProblemPage extends GetView<ReportAProblemController> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: getRelativeWidth(18)),
               child: Material(
+                color: Colors.transparent,
                 borderRadius: BorderRadius.circular(8),
                 child: InkWell(
                   borderRadius: BorderRadius.circular(8),
@@ -66,14 +67,15 @@ class ReportAProblemPage extends GetView<ReportAProblemController> {
                     padding: EdgeInsets.all(getRelativeWidth(8)),
                     child: Row(
                       children: <Widget>[
-                        const Icon(
+                        Icon(
                           Icons.add_a_photo_outlined,
                           size: 25,
+                          color: theme.slate,
                         ),
                         Gap(getRelativeWidth(14)),
                         Text(
                           'Add a photo/screenshot'.tr,
-                          style: SkillBuddyTypography.fromColor(theme.graphite)
+                          style: SkillBuddyTypography.fromColor(theme.slate)
                               .kParagraph,
                         ),
                       ],

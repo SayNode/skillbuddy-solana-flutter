@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-
 import '../../service/theme_service.dart';
 import '../../service/user_state_service.dart';
 import '../../theme/theme.dart';
@@ -27,6 +26,7 @@ class SettingsPage extends GetView<SettingsController> {
   @override
   Widget build(BuildContext context) {
     final CustomTheme skillBuddyTheme = ThemeService().theme;
+
     Get.put(SettingsController());
     return SkillBuddyScaffold(
       body: SingleChildScrollView(
@@ -60,9 +60,9 @@ class SettingsPage extends GetView<SettingsController> {
                 GestureDetector(
                   onLongPress: () => Get.dialog<void>(
                     Dialog(
+                      backgroundColor: skillBuddyTheme.seashell,
                       child:
-
-                          ///Todo remove when in production
+                          //Todo remove when in production
                           Obx(
                         () => ListView(
                           children: <Widget>[
@@ -135,11 +135,13 @@ class SettingsPage extends GetView<SettingsController> {
                       onTap: () {},
                     ),
                   ),
-                  SettingsLink(
-                    icon: 'asset/icons/change_icon.svg',
-                    title: 'Change Password'.tr,
-                    onTap: () => Get.to<void>(() => const ChangePasswordPage()),
-                  ),
+                  if (!controller.socialLogin.value)
+                    SettingsLink(
+                      icon: 'asset/icons/change_icon.svg',
+                      title: 'Change Password'.tr,
+                      onTap: () =>
+                          Get.to<void>(() => const ChangePasswordPage()),
+                    ),
                   Obx(
                     () => SettingsToggle(
                       icon: 'asset/icons/Biometric login.svg',
