@@ -82,6 +82,7 @@ class ReportAProblemController extends GetxController {
         'Success',
         'Report submitted successfully',
         snackPosition: SnackPosition.BOTTOM,
+        colorText: themeService.theme.graphite,
       );
     } catch (e) {
       // Handle the error

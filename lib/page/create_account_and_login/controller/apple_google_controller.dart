@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 import '../../../service/api_service.dart';
 import '../../../service/auth_service.dart';
+import '../../../service/storage/storage_service.dart';
 import '../../home/home_page.dart';
 import '../../onboarding/interest_selection/interest_selection_page.dart';
 
@@ -16,6 +17,7 @@ class AppleGoogleController extends GetxController {
   Future<void> googleSignInPressed() async {
     final ApiResponse response = await authService.googleSignIn();
     if (response.success) {
+      await Get.find<StorageService>().shared.writeBool('socialLogin', true);
       if (response.result!['is_signup']) {
         unawaited(Get.offAll<Widget>(() => const InterestSelectionPage()));
       } else {
@@ -53,6 +55,7 @@ class AppleGoogleController extends GetxController {
   Future<void> appleSignInPressed() async {
     final ApiResponse response = await authService.appleSignIn();
     if (response.success) {
+      await Get.find<StorageService>().shared.writeBool('socialLogin', true);
       if (response.result!['is_signup']) {
         unawaited(Get.offAll<Widget>(() => const InterestSelectionPage()));
       } else {

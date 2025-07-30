@@ -29,14 +29,14 @@ class FriendPage extends GetView<FriendController> {
       onPopInvokedWithResult: (bool didPop, dynamic result) =>
           Get.put(FriendListController()).refreshFriendsList(),
       child: SkillBuddyScaffold(
+        backButton: true,
+        title: '',
         body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
               Obx(
                 () => ProfileHeader(
                   user: user,
-                  backButton: true,
-                  backButtonFunction: () => Get.off,
                   showSettings: false,
                   editable: false,
                   buttonText: controller.isFollowing.value

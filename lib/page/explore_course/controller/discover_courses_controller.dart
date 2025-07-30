@@ -35,6 +35,9 @@ class DiscoverCoursesController extends GetxController {
     areaOfInterestChips.value = <String>[
       'All Courses',
       ...interestService.interestSelection.value.areas
+          .where(
+            (AreaOfInterest e) => e.title != 'Bitcoin (BTC)',
+          )
           .map((AreaOfInterest e) => e.title),
     ];
     await userStateService.get();

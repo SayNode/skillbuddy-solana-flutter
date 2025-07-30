@@ -20,6 +20,8 @@ class SearchWidget extends StatelessWidget {
         elevation: 0,
         color: skillBuddyTheme.seashell,
         child: TextField(
+          style: SkillBuddyTypography.fromColor(skillBuddyTheme.graphite)
+              .kParagraph,
           onChanged: onChanged,
           decoration: InputDecoration(
             isDense: true,

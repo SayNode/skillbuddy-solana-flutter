@@ -33,8 +33,8 @@ class SettingsToggle extends StatelessWidget {
       color: Colors.transparent,
       child: Padding(
         padding: EdgeInsets.only(
-          top: getRelativeHeight(10),
-          bottom: getRelativeHeight(10),
+          // top: getRelativeHeight(10),
+          // bottom: getRelativeHeight(10),
           left: getRelativeWidth(28),
           right: getRelativeWidth(16),
         ),

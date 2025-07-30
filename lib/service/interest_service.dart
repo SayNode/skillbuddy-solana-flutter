@@ -8,7 +8,7 @@ import '../page/onboarding/time_selection/time_selection.dart';
 import 'api_service.dart';
 import 'user_state_service.dart';
 
-const bool solanaCourseFilterActive = true;
+const bool solanaCourseFilterActive = false;
 
 class AreaOfInterest {
   AreaOfInterest({
@@ -113,8 +113,11 @@ class InterestService extends GetxService {
       return AreasOfInterest(
         areas: <AreaOfInterest>[
           for (final dynamic item in areasOfInterest)
-            // Todo remove id since it's not used anymore
-            AreaOfInterest(title: item),
+            if (item !=
+                'Bitcoin (BTC)') // Exclude Bitcoin from areas of interest
+              // Todo remove id since it's not used anymore
+
+              AreaOfInterest(title: item),
         ],
       );
     } else {

@@ -38,8 +38,8 @@ class SettingsLink extends StatelessWidget {
         onTap: onTap,
         child: Padding(
           padding: EdgeInsets.only(
-            top: getRelativeHeight(10),
-            bottom: getRelativeHeight(10),
+            top: switchValue ? 0 : getRelativeHeight(10),
+            bottom: switchValue ? 0 : getRelativeHeight(10),
             left: getRelativeWidth(28),
             right: getRelativeWidth(16),
           ),
