@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
-// import '../../page/solana/solana_service.dart';
+import '../../page/solana/solana_service.dart';
 import '../../service/theme_service.dart';
 import '../../theme/theme.dart';
 import '../../theme/typography.dart';
@@ -20,7 +20,7 @@ class RedeemNFTPopup extends GetView<RedeemNFTPopupController> {
   @override
   Widget build(BuildContext context) {
     final CustomTheme skillBuddyTheme = ThemeService().theme;
-    // final SolanaService solanaService = Get.find<SolanaService>();
+    final SolanaService solanaService = Get.find<SolanaService>();
 
     return Obx(
       () => SizedBox(
@@ -47,13 +47,15 @@ class RedeemNFTPopup extends GetView<RedeemNFTPopupController> {
                   children: <Widget>[
                     Text(
                       controller.isWalletConnected.value
-                          ? 'Your wallet is connected: ${controller.walletAddress.value}'
+                          ? '${solanaService.connectedAccountLabel.value} successfully connected'
                               .tr
                           : 'Begin the redemption process by connecting your Solana compatible wallet'
                               .tr,
                       textAlign: TextAlign.center,
                       style: SkillBuddyTypography.fromColor(
-                        skillBuddyTheme.graphite,
+                        controller.isWalletConnected.value
+                            ? skillBuddyTheme.green
+                            : skillBuddyTheme.graphite,
                       ).kParagraph,
                     ),
                   ],
@@ -62,11 +64,11 @@ class RedeemNFTPopup extends GetView<RedeemNFTPopupController> {
               const Gap(30),
               SkillBuddyButton(
                 text: controller.isWalletConnected.value
-                    ? 'Redeem'.tr
+                    ? 'Redeem now'.tr
                     : 'Connect wallet'.tr,
                 onTap: controller.isWalletConnected.value
-                    ? () => controller.authorizeWallet()
-                    : () => controller.redeemNFT(nftNumber),
+                    ? () => controller.redeemNFT(nftNumber)
+                    : () => controller.authorizeWallet(),
               ),
               const Gap(10),
             ],

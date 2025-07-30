@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../page/solana/solana_service.dart';
@@ -20,7 +21,7 @@ class RedeemNFTPopupController extends GetxController {
     walletAddress.value = solanaService.walletAddress.value ?? '';
   }
 
-  Future<bool> authorizeWallet() async {
+  Future<void> authorizeWallet() async {
     PopupManager.openLoadingPopup();
     isWalletConnected.value = false;
 
@@ -29,10 +30,8 @@ class RedeemNFTPopupController extends GetxController {
     if (solanaService.authToken.isNotEmpty &&
         solanaService.walletAddress.value != null) {
       isWalletConnected.value = true;
-      Get.back<void>();
     }
-    Get.back<bool>(result: isWalletConnected.value);
-    return isWalletConnected.value;
+    Get.back<void>();
   }
 
   Future<void> deauthorizeWallet() async {
@@ -52,19 +51,29 @@ class RedeemNFTPopupController extends GetxController {
 
     try {
       final bool success = await rewardClaimAndPayoutService.redeemNFT(
-        solanaService.walletAddress.value ?? '',
+        solanaService.walletAddress.value!,
         nftNumber,
       );
-
+      Get.back<void>();
       if (success) {
         PopupManager.openSuccessPopup();
       } else {
-        Get.snackbar('Redemption failed', 'Please try again later');
+        Get
+          ..back<void>()
+          ..snackbar(
+            'Redemption failed'.tr,
+            'Please try again later'.tr,
+            colorText: Colors.redAccent,
+          );
       }
     } catch (e) {
-      Get.snackbar('Redemption failed', e.toString());
-    } finally {
-      Get.back<void>();
+      Get
+        ..snackbar(
+          'Redemption failed'.tr,
+          e.toString(),
+          colorText: Colors.redAccent,
+        )
+        ..back<void>();
     }
   }
 }
