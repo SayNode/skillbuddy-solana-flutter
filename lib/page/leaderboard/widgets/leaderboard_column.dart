@@ -56,18 +56,15 @@ class LeaderboardColumn extends StatelessWidget {
               ),
               child: Padding(
                 padding: const EdgeInsets.all(2),
-                child: ClipOval(
+                child: CircleAvatar(
+                  radius: 30,
                   child: avatar.isEmpty
                       ? Image.asset(
                           'asset/images/avatar_default.png',
-                          width: getRelativeWidth(60),
-                          height: getRelativeWidth(60),
                           fit: BoxFit.cover,
                         )
                       : Image.network(
                           avatar,
-                          width: getRelativeWidth(60),
-                          height: getRelativeWidth(60),
                           fit: BoxFit.cover,
                           errorBuilder: (
                             BuildContext context,
