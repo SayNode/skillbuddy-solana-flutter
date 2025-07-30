@@ -120,4 +120,25 @@ class RewardClaimAndPayoutService extends GetxService {
       );
     }
   }
+
+  Future<bool> redeemNFT(
+    String walletAddress,
+    int nftNumber,
+  ) async {
+    final Map<String, dynamic> requestBody = <String, dynamic>{
+      'receiver_wallet_address': walletAddress,
+      'nft_number': nftNumber,
+    };
+
+    final ApiResponse response = await apiService.post(
+      '/solana/trans-req-nft/',
+      body: requestBody,
+    );
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return true;
+    } else {
+      debugPrint('Redeem NFT Service Error: ${response.message}');
+      return false;
+    }
+  }
 }

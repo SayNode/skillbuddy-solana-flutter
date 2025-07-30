@@ -74,32 +74,34 @@ class DiscoverCoursesPage extends GetView<DiscoverCoursesController> {
               child: Row(
                 children: <Widget>[
                   Gap(getRelativeWidth(12)),
-                  for (int i = 0;
-                      i < controller.areaOfInterestChips.length;
-                      i++)
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: getRelativeWidth(3),
-                      ),
-                      child: Obx(
-                        () => SkillBuddyChip(
-                          borderRadius: 12,
-                          onTap: controller.loading.value
-                              ? null
-                              : () async => controller.selectAreaOfInterest(i),
-                          selected: controller.coursesIndex == i,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8),
-                            child: Text(
-                              controller.areaOfInterestChips[i],
-                              style: SkillBuddyTypography.fromColor(
-                                theme.graphite,
-                              ).kParagraph,
+                  if (controller.areaOfInterestChips.isNotEmpty)
+                    for (int i = 0;
+                        i < controller.areaOfInterestChips.length;
+                        i++)
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: getRelativeWidth(3),
+                        ),
+                        child: Obx(
+                          () => SkillBuddyChip(
+                            borderRadius: 12,
+                            onTap: controller.loading.value
+                                ? null
+                                : () async =>
+                                    controller.selectAreaOfInterest(i),
+                            selected: controller.coursesIndex == i,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8),
+                              child: Text(
+                                controller.areaOfInterestChips[i],
+                                style: SkillBuddyTypography.fromColor(
+                                  theme.graphite,
+                                ).kParagraph,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
                   Gap(getRelativeWidth(15)),
                 ],
               ),

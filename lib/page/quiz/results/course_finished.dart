@@ -93,7 +93,8 @@ class CourseFinishedPage extends GetView<QuizResultsController> {
                         Row(
                           children: <Widget>[
                             Text(
-                              '${controller.capitalizeFirstLetter(controller.score.rewardType)} :',
+                              'Bonk:',
+                              // '${controller.capitalizeFirstLetter(controller.score.rewardType)} :',
                               style:
                                   SkillBuddyTypography.fromColor(theme.graphite)
                                       .kParagraph,

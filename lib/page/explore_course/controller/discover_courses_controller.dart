@@ -42,6 +42,14 @@ class DiscoverCoursesController extends GetxController {
     ];
     await userStateService.get();
     await refreshCourses();
+    if (allCourses.isNotEmpty) {
+      for (final Course c
+          in allCourses.values.expand((List<Course> list) => list)) {
+        if (c.areaOfInterestList.contains('Solana')) {
+          Get.find<ContentService>().solanaCourseCount.value++;
+        }
+      }
+    }
     super.onInit();
   }
 

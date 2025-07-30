@@ -24,6 +24,7 @@ import '../service/logger_service.dart';
 import '../service/storage/secure_storage_service.dart';
 import '../service/storage/shared_storage_service.dart';
 import '../service/storage/storage_service.dart';
+import '../widget/popups/controller/redeem_ntf_popup_controller.dart';
 import '../widget/popups/controller/donate_controller.dart';
 import '../widget/popups/controller/payout_popup_controller.dart';
 import 'analytics_service.dart';
@@ -73,6 +74,7 @@ class MainBindings extends Bindings {
     Get.lazyPut(LeaderboardController.new, fenix: true);
     Get.lazyPut(ProfileController.new, fenix: true);
     Get.lazyPut(PayoutPopupController.new, fenix: true);
+    Get.lazyPut(RedeemNFTPopupController.new, fenix: true);
     Get.lazyPut(TokenListController.new, fenix: true);
     Get.lazyPut(SimpleLoginController.new, fenix: true);
     Get.lazyPut(DonateListController.new, fenix: true);

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
@@ -71,8 +70,18 @@ class CharityTile extends StatelessWidget {
       },
       child: Row(
         children: <Widget>[
-          SvgPicture.asset(
-            image,
+          Container(
+            width: 90,
+            height: 50,
+            padding: EdgeInsets.all(getRelativeWidth(4)),
+            decoration: BoxDecoration(
+              color: skillBuddyTheme.graphite,
+              borderRadius: BorderRadius.circular(4),
+            ),
+            child: Image.asset(
+              image,
+              fit: BoxFit.contain,
+            ),
           ),
           Gap(getRelativeWidth(12)),
           Text(

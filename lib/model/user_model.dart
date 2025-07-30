@@ -20,6 +20,8 @@ class User {
         token = json['satoshi_balance'] as int? ?? 0,
         isVerified = json['is_verified'] as bool? ?? false,
         isTenant = json['is_tenant'] as bool? ?? false,
+        nftOne = json['nft_one'] as String? ?? '',
+        nftTwo = json['nft_two'] as String? ?? '',
         firebasePushNotificationToken =
             json['firebase_push_notification_token'] as String? ?? '';
 
@@ -40,6 +42,8 @@ class User {
   List<dynamic> follower = <List<dynamic>>[];
   List<dynamic> following = <List<dynamic>>[];
   String firebasePushNotificationToken = '';
+  String nftOne = '';
+  String nftTwo = '';
 
   Map<String, dynamic> toJson() => <String, dynamic>{
         'id': id,
@@ -58,6 +62,7 @@ class User {
         'is_verified': isVerified,
         'level': level,
         'firebase_push_notification_token': firebasePushNotificationToken,
+        'is_tenant': isTenant,
       };
   // Function to format date
   static String _formatDate(String? isoDate) {

@@ -16,6 +16,7 @@ import '../friends/friends_list_page.dart';
 import 'controller/profile_controller.dart';
 import 'edit_bio_page.dart';
 import 'edit_name_page.dart';
+import 'widget/nft_badge_card.dart';
 import 'widget/profile_cards.dart';
 import 'widget/profile_course_card.dart';
 import 'widget/profile_header.dart';
@@ -70,7 +71,54 @@ class ProfilePage extends GetView<ProfileController> {
               coursesCompleted: contentService.coursesCompleted(),
             ),
           ),
-          Gap(getRelativeHeight(32)),
+          Gap(getRelativeHeight(30)),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: getRelativeWidth(15)),
+              child: Text(
+                'NFT Badges'.tr,
+                style: SkillBuddyTypography.fromColor(skillBuddyTheme.graphite)
+                    .kTitle,
+              ),
+            ),
+          ),
+          Gap(getRelativeHeight(14)),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: getRelativeWidth(20)),
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: Obx(
+                    () => NftBadgeCard(
+                      nft: 'asset/images/nfts/explorer.jpg',
+                      title: 'Completed 2 Solana courses'.tr,
+                      status: controller.firstNftBadgeStatus.value,
+                      onTap: () => controller.firstNftBadgeStatus.value ==
+                              NftBadgeStatus.unlocked
+                          ? controller.redeemNFT(1)
+                          : null,
+                    ),
+                  ),
+                ),
+                const Gap(10), // Optional spacing
+                Expanded(
+                  child: Obx(
+                    () => NftBadgeCard(
+                      nft: 'asset/images/nfts/journey.jpg',
+                      title: 'Completed all Solana courses'.tr,
+                      status: controller.secondNftBadgeStatus.value,
+                      onTap: () => controller.secondNftBadgeStatus.value ==
+                              NftBadgeStatus.unlocked
+                          ? controller.redeemNFT(2)
+                          : null,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Gap(getRelativeHeight(30)),
           Align(
             alignment: Alignment.centerLeft,
             child: Padding(
