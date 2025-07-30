@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../page/profile/controller/profile_controller.dart';
 import '../../../page/solana/solana_service.dart';
 
 import '../../../service/reward_claim_and_payout_services.dart';
+import '../../../service/user_state_service.dart';
 import '../popup_manager.dart';
 
 class RedeemNFTPopupController extends GetxController {
@@ -56,7 +58,17 @@ class RedeemNFTPopupController extends GetxController {
       );
       Get.back<void>();
       if (success) {
-        PopupManager.openSuccessPopup();
+        await Get.find<UserStateService>().get();
+        Get.find<ProfileController>().updateNFTStatus();
+        Get
+          ..snackbar(
+            'NFT Redeemed',
+            'Your NFT has been successfully redeemed.',
+            colorText: Colors.green,
+          )
+          ..back<void>()
+          ..back<void>();
+        // PopupManager.openSuccessPopup();
       } else {
         Get
           ..back<void>()
