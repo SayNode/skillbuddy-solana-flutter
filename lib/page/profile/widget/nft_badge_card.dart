@@ -1,6 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 
 import '../../../service/theme_service.dart';
@@ -15,12 +14,14 @@ class NftBadgeCard extends StatelessWidget {
     required this.title,
     required this.status,
     required this.onTap,
+    required this.nft,
     super.key,
   });
 
   final String title;
   final NftBadgeStatus status;
   final VoidCallback onTap;
+  final String nft;
 
   @override
   Widget build(BuildContext context) {
@@ -41,11 +42,17 @@ class NftBadgeCard extends StatelessWidget {
         ),
         child: Row(
           children: <Widget>[
-            SvgPicture.asset(
-              'asset/icons/token_icon.svg',
+            ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.asset(
+                nft,
+                width: getRelativeWidth(50),
+                height: getRelativeHeight(50),
+                fit: BoxFit.cover,
+              ),
             ),
             Gap(getRelativeWidth(10)),
-            Expanded(
+            Flexible(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,

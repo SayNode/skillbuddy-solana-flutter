@@ -77,7 +77,7 @@ class ProfilePage extends GetView<ProfileController> {
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: getRelativeWidth(15)),
               child: Text(
-                'Courses Enrolled'.tr,
+                'NFT Badges'.tr,
                 style: SkillBuddyTypography.fromColor(skillBuddyTheme.graphite)
                     .kTitle,
               ),
@@ -91,6 +91,7 @@ class ProfilePage extends GetView<ProfileController> {
                 Expanded(
                   child: Obx(
                     () => NftBadgeCard(
+                      nft: 'asset/images/nfts/explorer.jpg',
                       title: 'Completed 2 Solana courses'.tr,
                       status: controller.firstNftBadgeStatus.value,
                       onTap: () => controller.firstNftBadgeStatus.value ==
@@ -104,6 +105,7 @@ class ProfilePage extends GetView<ProfileController> {
                 Expanded(
                   child: Obx(
                     () => NftBadgeCard(
+                      nft: 'asset/images/nfts/journey.jpg',
                       title: 'Completed all Solana courses'.tr,
                       status: controller.secondNftBadgeStatus.value,
                       onTap: () => controller.secondNftBadgeStatus.value ==
