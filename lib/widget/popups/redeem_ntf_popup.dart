@@ -70,7 +70,17 @@ class RedeemNFTPopup extends GetView<RedeemNFTPopupController> {
                     ? () => controller.redeemNFT(nftNumber)
                     : () => controller.authorizeWallet(),
               ),
-              const Gap(10),
+              Obx(
+                () => controller.isWalletConnected.value
+                    ? TextButton(
+                        onPressed: () async {
+                          await controller.deauthorizeWallet();
+                          Get.back<void>();
+                        },
+                        child: Text('Disconnect wallet'.tr),
+                      )
+                    : const Gap(10),
+              ),
             ],
           ),
         ),
