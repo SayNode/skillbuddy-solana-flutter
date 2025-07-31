@@ -94,10 +94,7 @@ class ProfilePage extends GetView<ProfileController> {
                       nft: 'asset/images/nfts/explorer.jpg',
                       title: 'Completed 2 Solana courses'.tr,
                       status: controller.firstNftBadgeStatus.value,
-                      onTap: () => controller.firstNftBadgeStatus.value ==
-                              NftBadgeStatus.unlocked
-                          ? controller.redeemNFT(1)
-                          : null,
+                      onTap: () => controller.redeemNFT(1),
                     ),
                   ),
                 ),

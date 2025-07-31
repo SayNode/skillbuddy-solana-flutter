@@ -73,6 +73,8 @@ class ProfileController extends GetxController {
   }
 
   Future<void> redeemNFT(int nftNumber) async {
-    PopupManager.openConnectWallet(nftNumber);
+    final NftBadgeStatus status =
+        nftNumber == 1 ? firstNftBadgeStatus.value : secondNftBadgeStatus.value;
+    PopupManager.openConnectWallet(nftNumber, status);
   }
 }
