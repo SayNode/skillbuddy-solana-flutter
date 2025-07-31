@@ -27,6 +27,64 @@ class NftBadgeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final CustomTheme skillBuddyTheme = ThemeService().theme;
 
+    if (status == NftBadgeStatus.locked) {
+      return Container(
+        padding: EdgeInsets.symmetric(
+          vertical: getRelativeHeight(8),
+          horizontal: getRelativeWidth(10),
+        ),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(
+            color: skillBuddyTheme.grey,
+          ),
+        ),
+        child: Row(
+          children: <Widget>[
+            Stack(
+              alignment: Alignment.center,
+              children: <Widget>[
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Image.asset(
+                    nft,
+                    width: getRelativeWidth(50),
+                    height: getRelativeWidth(50),
+                    fit: BoxFit.cover,
+                    color: skillBuddyTheme.linen.withValues(alpha: 0.5),
+                    colorBlendMode: BlendMode.darken,
+                  ),
+                ),
+                Icon(Icons.lock, color: skillBuddyTheme.graphite, size: 24),
+              ],
+            ),
+            Gap(getRelativeWidth(10)),
+            Flexible(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  AutoSizeText(
+                    title,
+                    style: SkillBuddyTypography.fromColor(
+                      skillBuddyTheme.graphite.withAlpha(150),
+                    ).kParagraphSemiBold,
+                    maxLines: 2,
+                  ),
+                  Text(
+                    'Locked',
+                    style: SkillBuddyTypography.fromColor(
+                      skillBuddyTheme.red.withAlpha(200),
+                    ).kTextAdditional,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
     return InkWell(
       onTap: onTap,
       child: Container(
