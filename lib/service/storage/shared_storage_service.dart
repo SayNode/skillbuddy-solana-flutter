@@ -7,6 +7,4 @@
 
 import '../../base/storage/shared_storage_base_service.dart';
 
-class SharedStorageService extends SharedStorageBaseService {
-  remove(String last_module_id) {}
-}
+class SharedStorageService extends SharedStorageBaseService {}

@@ -171,6 +171,8 @@ class QuizResultsController extends GetxController {
       await RewardClaimAndPayoutService().claimCourseReward(courseId);
       await Get.find<UserStateService>().clearLastVisitedLesson();
       await Get.find<UserStateService>().get();
+      await Get.find<UserStateService>().getNFTstatus();
+
       final NextStep? nextStep =
           await Get.find<ContentService>().courseNextStep(courseId);
       if (nextStep == null) {

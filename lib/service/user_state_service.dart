@@ -115,4 +115,17 @@ class UserStateService extends GetxService {
       Get.snackbar('Verification'.tr, 'Verification link sent to email'.tr);
     }
   }
+
+  Future<void> getNFTstatus() async {
+    final ApiResponse response =
+        await Get.find<APIService>().get('/solana/nft-status/');
+    if (response.success) {
+      if (response.result != null) {
+        user.value.nftOne = response.result!['nft_one_status'] ?? 'locked';
+        user.value.nftTwo = response.result!['nft_two_status'] ?? 'locked';
+      }
+    } else {
+      throw Exception('Error fetching NFT status - ${response.result}');
+    }
+  }
 }

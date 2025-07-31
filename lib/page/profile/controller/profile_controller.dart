@@ -24,16 +24,6 @@ class ProfileController extends GetxController {
     await checkUserName();
     await userStateService.get();
     await contentService.fetchData();
-    // final int solanaCourseCount = contentService.solanaCourseCount.value;
-
-    // firstNftBadgeStatus.value =
-    //     contentService.solanaCourseCompletedCount.value >= 2
-    //         ? NftBadgeStatus.unlocked
-    //         : NftBadgeStatus.locked;
-    // secondNftBadgeStatus.value =
-    //     contentService.solanaCourseCompletedCount.value >= solanaCourseCount
-    //         ? NftBadgeStatus.unlocked
-    //         : NftBadgeStatus.locked;
     updateNFTStatus();
     loading.value = false;
   }
