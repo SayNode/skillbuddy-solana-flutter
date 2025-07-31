@@ -55,6 +55,7 @@ class PopupManager {
 
   static void openLoadingPopup({String? title}) {
     openSkillBuddyPopup(
+      closeButton: false,
       title != null ? LoadingPopup(title: title) : const LoadingPopup(),
     );
   }
