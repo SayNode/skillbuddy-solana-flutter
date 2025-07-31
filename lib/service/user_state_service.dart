@@ -39,6 +39,13 @@ class UserStateService extends GetxService {
     );
   }
 
+  Future<void> clearLastVisitedLesson() async {
+    await storageService.shared.delete(LAST_COURSE_ID);
+    await storageService.shared.delete(LAST_MODULE_ID);
+    await storageService.shared.delete(LAST_CHAPTER_ID);
+    await storageService.shared.delete(LAST_LESSON_ID);
+  }
+
   void clear() {
     user.value = User();
   }
