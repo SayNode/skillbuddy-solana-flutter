@@ -169,8 +169,9 @@ class QuizResultsController extends GetxController {
   Future<void> claimCourseReward(int courseId) async {
     try {
       await RewardClaimAndPayoutService().claimCourseReward(courseId);
-
+      await Get.find<UserStateService>().clearLastVisitedLesson();
       await Get.find<UserStateService>().get();
+
       final NextStep? nextStep =
           await Get.find<ContentService>().courseNextStep(courseId);
       if (nextStep == null) {

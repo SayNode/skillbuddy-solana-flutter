@@ -1,6 +1,7 @@
 // ignore_for_file: inference_failure_on_function_invocation
 
 import '../../model/content/course.dart';
+import '../../page/profile/widget/nft_badge_card.dart';
 import '../skillbuddy_popup.dart';
 import 'company_profile.dart';
 import 'course_added_popup.dart';
@@ -40,9 +41,9 @@ class PopupManager {
     );
   }
 
-  static void openConnectWallet(int nftNumber) {
+  static void openConnectWallet(int nftNumber, NftBadgeStatus status) {
     openSkillBuddyPopup(
-      RedeemNFTPopup(nftNumber: nftNumber),
+      RedeemNFTPopup(nftNumber: nftNumber, status: status),
     );
   }
 
@@ -54,6 +55,7 @@ class PopupManager {
 
   static void openLoadingPopup({String? title}) {
     openSkillBuddyPopup(
+      closeButton: false,
       title != null ? LoadingPopup(title: title) : const LoadingPopup(),
     );
   }

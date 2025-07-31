@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
+import '../../page/profile/widget/nft_badge_card.dart';
 import '../../page/solana/solana_service.dart';
 import '../../service/theme_service.dart';
 import '../../theme/theme.dart';
@@ -13,14 +14,69 @@ import '../skillbuddy_button.dart';
 import 'controller/redeem_ntf_popup_controller.dart';
 
 class RedeemNFTPopup extends GetView<RedeemNFTPopupController> {
-  const RedeemNFTPopup({required this.nftNumber, super.key});
+  const RedeemNFTPopup({
+    required this.nftNumber,
+    required this.status,
+    super.key,
+  });
 
   final int nftNumber;
+  final NftBadgeStatus status;
 
   @override
   Widget build(BuildContext context) {
     final CustomTheme skillBuddyTheme = ThemeService().theme;
     final SolanaService solanaService = Get.find<SolanaService>();
+
+    if (status == NftBadgeStatus.redeemed) {
+      return SizedBox(
+        width: double.infinity,
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: getRelativeWidth(20),
+            vertical: getRelativeHeight(20),
+          ),
+          child: Column(
+            children: <Widget>[
+              const Gap(35),
+              Text(
+                'NFT Redeemed'.tr,
+                style: SkillBuddyTypography.fromColor(
+                  skillBuddyTheme.graphite,
+                ).kTitle,
+              ),
+              const Gap(15),
+              SizedBox(
+                width: double.infinity,
+                child: Column(
+                  spacing: 10,
+                  children: <Widget>[
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.asset(
+                        nftNumber == 1
+                            ? 'asset/images/nfts/explorer.jpg'
+                            : 'asset/images/nfts/journey.jpg',
+                        height: 150,
+                        // color: skillBuddyTheme.linen.withValues(alpha: 0.6),
+                        // colorBlendMode: BlendMode.darken,
+                      ),
+                    ),
+                    Text(
+                      'This NFT has been successfully redeemed.'.tr,
+                      textAlign: TextAlign.center,
+                      style: SkillBuddyTypography.fromColor(
+                        skillBuddyTheme.graphite,
+                      ).kParagraph,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
 
     return Obx(
       () => SizedBox(

@@ -39,6 +39,13 @@ class UserStateService extends GetxService {
     );
   }
 
+  Future<void> clearLastVisitedLesson() async {
+    await storageService.shared.delete(LAST_COURSE_ID);
+    await storageService.shared.delete(LAST_MODULE_ID);
+    await storageService.shared.delete(LAST_CHAPTER_ID);
+    await storageService.shared.delete(LAST_LESSON_ID);
+  }
+
   void clear() {
     user.value = User();
   }
@@ -106,6 +113,19 @@ class UserStateService extends GetxService {
         await Get.find<APIService>().post('users/verify/');
     if (response.result != null) {
       Get.snackbar('Verification'.tr, 'Verification link sent to email'.tr);
+    }
+  }
+
+  Future<void> getNFTstatus() async {
+    final ApiResponse response =
+        await Get.find<APIService>().get('/solana/nft-status/');
+    if (response.success) {
+      if (response.result != null) {
+        user.value.nftOne = response.result!['nft_one_status'] ?? 'locked';
+        user.value.nftTwo = response.result!['nft_two_status'] ?? 'locked';
+      }
+    } else {
+      throw Exception('Error fetching NFT status - ${response.result}');
     }
   }
 }

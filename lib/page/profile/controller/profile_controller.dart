@@ -22,18 +22,9 @@ class ProfileController extends GetxController {
     loading.value = true;
     super.onInit();
     await checkUserName();
+    await userStateService.getNFTstatus();
     await userStateService.get();
     await contentService.fetchData();
-    // final int solanaCourseCount = contentService.solanaCourseCount.value;
-
-    // firstNftBadgeStatus.value =
-    //     contentService.solanaCourseCompletedCount.value >= 2
-    //         ? NftBadgeStatus.unlocked
-    //         : NftBadgeStatus.locked;
-    // secondNftBadgeStatus.value =
-    //     contentService.solanaCourseCompletedCount.value >= solanaCourseCount
-    //         ? NftBadgeStatus.unlocked
-    //         : NftBadgeStatus.locked;
     updateNFTStatus();
     loading.value = false;
   }
@@ -73,6 +64,13 @@ class ProfileController extends GetxController {
   }
 
   Future<void> redeemNFT(int nftNumber) async {
-    PopupManager.openConnectWallet(nftNumber);
+    if (Get.find<UserStateService>().user.value.isVerified) {
+      final NftBadgeStatus status = nftNumber == 1
+          ? firstNftBadgeStatus.value
+          : secondNftBadgeStatus.value;
+      PopupManager.openConnectWallet(nftNumber, status);
+    } else {
+      PopupManager.openPayoutWallet();
+    }
   }
 }
