@@ -22,6 +22,7 @@ class ProfileController extends GetxController {
     loading.value = true;
     super.onInit();
     await checkUserName();
+    await userStateService.getNFTstatus();
     await userStateService.get();
     await contentService.fetchData();
     updateNFTStatus();
