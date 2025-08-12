@@ -4,10 +4,8 @@
 // Flutter Architect was created at SayNode Operations AG by Yann Marti, Francesco Romeo and Pedro Gonçalves.
 //
 // https://saynode.ch
-import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_branch_sdk/flutter_branch_sdk.dart';
 import 'package:get/get.dart';
@@ -31,9 +29,15 @@ class Main extends MainBase {
     Get.log('Initializing services...');
     // Initialize services:
     await Get.find<StorageService>().init();
+    Get.log('StorageService initialized');
+
     await Get.find<LocalizationController>().init();
+    Get.log('LocalizationController initialized');
+
     Get.find<AuthService>().init();
+    Get.log('AuthService initialized');
     await super.initializeServices();
+    Get.log('All services initialized');
   }
 
   @override
@@ -46,16 +50,17 @@ class Main extends MainBase {
         options: DefaultFirebaseOptions.currentPlatform,
       );
     }
-    if (kReleaseMode) {
-      await FirebaseAppCheck.instance.activate(
-        appleProvider: AppleProvider.appAttestWithDeviceCheckFallback,
-      );
-    }
+    // if (kReleaseMode) {
+    //   await FirebaseAppCheck.instance.activate(
+    //     appleProvider: AppleProvider.appAttestWithDeviceCheckFallback,
+    //   );
+    // }
 
     await Get.find<MessagingService>().init();
 
     try {
       await FlutterBranchSdk.init();
+      Get.log('Branch SDK initialized');
     } catch (e) {
       SkillBuddyConstants.logger.log('Branch SDK Error: $e', error: e);
     }
@@ -65,6 +70,7 @@ class Main extends MainBase {
 
   @override
   Future<void> onRunZonedGuarded(WidgetsBinding widgetsBinding) async {
+    Get.log('On Run Zoned Guarded:');
     // On Run Zoned Guarded:
     if (isFirstRun) {
       await Get.find<StorageService>().secure.deleteAll();
