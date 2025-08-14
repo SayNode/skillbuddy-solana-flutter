@@ -56,36 +56,30 @@ class RedeemNFTPopupController extends GetxController {
         solanaService.walletAddress.value!,
         nftNumber,
       );
-      Get.back<void>();
+      Get
+        ..back<void>()
+        ..back<void>();
       if (success) {
         await Get.find<UserStateService>().get();
         Get.find<ProfileController>().updateNFTStatus();
-        Get
-          ..snackbar(
-            'NFT Redeemed',
-            'Your NFT has been successfully redeemed.',
-            colorText: Colors.green,
-          )
-          ..back<void>()
-          ..back<void>();
-        // PopupManager.openSuccessPopup();
+        Get.snackbar(
+          'NFT Redeemed',
+          'Your NFT has been successfully redeemed.',
+          colorText: Colors.green,
+        );
       } else {
-        Get
-          ..back<void>()
-          ..snackbar(
-            'Redemption failed'.tr,
-            'Please try again later'.tr,
-            colorText: Colors.redAccent,
-          );
+        Get.snackbar(
+          'Redemption failed'.tr,
+          'Please try again later'.tr,
+          colorText: Colors.redAccent,
+        );
       }
     } catch (e) {
-      Get
-        ..snackbar(
-          'Redemption failed'.tr,
-          e.toString(),
-          colorText: Colors.redAccent,
-        )
-        ..back<void>();
+      Get.snackbar(
+        'Redemption failed'.tr,
+        e.toString(),
+        colorText: Colors.redAccent,
+      );
     }
   }
 }

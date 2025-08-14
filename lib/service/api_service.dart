@@ -7,8 +7,6 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:firebase_app_check/firebase_app_check.dart';
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
@@ -66,33 +64,11 @@ class APIService extends GetxService {
     bool omitBearerToken = false,
     String? contentType,
   }) async {
-    String? token;
-
-    if (kReleaseMode) {
-      try {
-        final String? result = await FirebaseAppCheck.instance.getToken();
-        token = result;
-
-        if (token == null || token.isEmpty) {
-          loggerService.log('Firebase App Check token is null or empty');
-          throw Exception('App Check token is missing');
-        }
-
-        loggerService.log('Firebase App Check token: $token');
-      } catch (e) {
-        loggerService.log('Failed to retrieve App Check token: $e');
-        throw Exception('App Check validation failed');
-      }
-    } else {
-      loggerService.log('App Check skipped in non-release mode');
-    }
-
     return <String, String>{
       'key': SkillBuddyConstants.apiKey,
       if (contentType != null) 'Content-Type': contentType,
       if (!omitBearerToken)
         HttpHeaders.authorizationHeader: 'Bearer $authenticationToken',
-      if (token != null && token.isNotEmpty) 'X-Firebase-AppCheck': token,
     };
   }
 
