@@ -15,11 +15,9 @@ class CourseCard extends StatelessWidget {
     required this.course,
     super.key,
     this.onTap,
-    this.isSolanaCourse = false,
   });
   final Course course;
   final dynamic Function()? onTap;
-  final bool isSolanaCourse;
 
   @override
   Widget build(BuildContext context) {
@@ -117,17 +115,11 @@ class CourseCard extends StatelessWidget {
                   ).kTextAdditional,
                 ),
                 const Gap(20),
-                if (!isSolanaCourse)
-                  SvgPicture.asset(
-                    'asset/icons/satoshi_icon.svg',
-                    height: 18,
-                  )
-                else
-                  Image.asset(
-                    'asset/icons/bonk.png',
-                    width: 22,
-                    height: 22,
-                  ),
+                Image.asset(
+                  'asset/icons/bonk.png',
+                  width: 22,
+                  height: 22,
+                ),
                 const Gap(4),
                 Text(
                   course.rewardAmount.toString(),

@@ -27,6 +27,7 @@ abstract class MainBase {
   Future<void> main() async {
     final MainBindings mainBinding = MainBindings();
     await mainBinding.dependencies();
+
     await unguarded();
     await guarded();
   }
@@ -74,6 +75,7 @@ abstract class MainBase {
       isFirstRun = await IsFirstRun.isFirstRun();
 
       await beforeRunApp();
+      print('Before Run App completed');
 
       // Run the app:
       runApp(const MyApp());
@@ -84,7 +86,9 @@ abstract class MainBase {
   }
 
   /// This is called before runApp()
-  Future<void> beforeRunApp() async {}
+  Future<void> beforeRunApp() async {
+    print('Before Run App');
+  }
 
   /// This is called first thing inside runZonedGuarded()
   Future<void> onRunZonedGuarded(WidgetsBinding widgetsBinding) async {}

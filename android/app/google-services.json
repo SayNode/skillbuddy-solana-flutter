@@ -54,6 +54,14 @@
           }
         },
         {
+          "client_id": "644593034419-getkbovn9r44u86metg13u7qct2at4aa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.skillbuddy.academy",
+            "certificate_hash": "955d54631db371f715453f30f8b8ab8787bb356f"
+          }
+        },
+        {
           "client_id": "644593034419-kpjh4vou77nd5n0ge96eeq5267c96vrj.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -67,6 +75,14 @@
           "android_info": {
             "package_name": "io.skillbuddy.academy",
             "certificate_hash": "5aea051a51cd640d6e2bbcd42124e7d8429bf61a"
+          }
+        },
+        {
+          "client_id": "644593034419-tmvnh3ms3efadknvomv9k1mj6cefprll.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.skillbuddy.academy",
+            "certificate_hash": "b07535f12f79a052d251084bad1bcb8d5b6afe51"
           }
         },
         {

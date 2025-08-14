@@ -395,9 +395,6 @@ class DiscoverCoursesPage extends GetView<DiscoverCoursesController> {
                                                     i < entry.value.length;
                                                     i++) ...<Widget>[
                                                   CourseCard(
-                                                    isSolanaCourse:
-                                                        entry.key.title ==
-                                                            'Solana',
                                                     course: entry.value[i],
                                                     onTap: () => controller
                                                         .goToCourseDetails(

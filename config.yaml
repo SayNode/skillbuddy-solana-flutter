@@ -1,0 +1,51 @@
+publisher:
+  name: SayNode
+  website: https://www.saynode.ch
+  email: simon@saynode.ch
+app:
+  name: SkillBuddy
+  address: Er4oibMsDpNDgMzJBn3b3JohBKFfTvbAATCZHtrhC31m
+  android_package: io.skillbuddy.academy
+  urls:
+    license_url: https://www.skillbuddy.io/
+    copyright_url: https://www.skillbuddy.io/
+    privacy_policy_url: https://www.skillbuddy.io/private_policy
+    website: https://www.skillbuddy.io
+  media:
+    - purpose: icon
+      uri: publishing/store_icon.png
+release:
+  address: DSb26ckpoNFcroqHJfTHLvPVrydGHZv2beWTrVwHUqrn
+  media:
+    - purpose: icon
+      uri: publishing/store_icon.png
+    - purpose: banner
+      uri: publishing/banner.png
+    - purpose: screenshot
+      uri: publishing/screen_shot_1.png
+    - purpose: screenshot
+      uri: publishing/screen_shot_2.png
+    - purpose: screenshot
+      uri: publishing/screen_shot_3.png
+    - purpose: screenshot
+      uri: publishing/screen_shot_4.png
+  files:
+    - purpose: install
+      uri: build/app/outputs/flutter-apk/app-release.apk
+  catalog:
+    en-US:
+      name: SkillBuddy
+      short_description: Learn Web3. Earn Crypto
+      long_description: Dive into bite-sized, gamified courses on Solana, DeFi, NFTs, and more, mastering complex topics while earning crypto rewards like BONK. Accelerate your Web3 journey and onboard into decentralized ecosystems up to 5x faster. Experience gamified learning with leaderboards and levels, and receive verifiable On-Chain Certificates (NFTs) as proof of your new skills. Bridge the gap from Web2 to Web3, deepen your engagement, and prove your expertise with Skillbuddy.
+      new_in_version: SkillBuddy is now available on Solana Mobile Dapp Store!
+      saga_features: ''
+solana_mobile_dapp_publisher_portal:
+  google_store_package: io.skillbuddy.app
+  testing_instructions: |
+    1. Install the SkillBuddy app from the Solana Mobile Dapp Store. 2. Create a new account or log in. 3. Complete courses and quizzes to earn rewards. 4. Test NFT redemption and BONK payouts.
+lastSubmittedVersionOnChain:
+  address: DSb26ckpoNFcroqHJfTHLvPVrydGHZv2beWTrVwHUqrn
+  version_code: 2
+  apk_hash: orewRJ0eP2fQpstJ5Ndak6osM7H0vuzGtgxWsNAuADY=
+lastUpdatedVersionOnStore:
+  address: DSb26ckpoNFcroqHJfTHLvPVrydGHZv2beWTrVwHUqrn
