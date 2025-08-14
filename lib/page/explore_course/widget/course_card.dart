@@ -115,9 +115,10 @@ class CourseCard extends StatelessWidget {
                   ).kTextAdditional,
                 ),
                 const Gap(20),
-                SvgPicture.asset(
-                  'asset/icons/satoshi_icon.svg',
-                  height: 18,
+                Image.asset(
+                  'asset/icons/bonk.png',
+                  width: 22,
+                  height: 22,
                 ),
                 const Gap(4),
                 Text(
